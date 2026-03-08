@@ -1,14 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="Css/style.css">
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-storage-compat.js"></script>
-  </head>
-  <body></body>
+<head>
+  <meta charset="UTF-8">
+  <title>Main Menu</title>
+  <link rel="stylesheet" href="../Css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Main Menu</h1>
+  <h2>Welcome</h2>
+
+  <p id="userEmail"></p>
+
+  <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
+
+    <button onclick="goToSongSearch()">Search Songs</button>
+
+    <button onclick="logout()">Logout</button>
+
+  </div>
+
+</div>
+
+<!-- Firebase compat -->
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+
+<script src="../Script/firebase-config.js"></script>
+
+<script>
+
+const auth = firebase.auth();
+const userEmailText = document.getElementById("userEmail");
+
+
+/* Check login state */
+auth.onAuthStateChanged(user => {
+
+  if(user){
+    userEmailText.textContent = "Logged in as: " + user.email;
+  }else{
+    window.location.href = "login.html";
+  }
+
+});
+
+
+/* Go to song page */
+function goToSongSearch(){
+  window.location.href = "song.html";
+}
+
+
+/* Logout */
+function logout(){
+
+  auth.signOut().then(() => {
+    window.location.href = "login.html";
+  });
+
+}
+
+</script>
+
+</body>
 </html>
