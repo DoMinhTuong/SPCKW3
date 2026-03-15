@@ -1,70 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Main Menu</title>
-  <link rel="stylesheet" href="../Css/style.css">
+<meta charset="UTF-8">
+<title>Main Menu</title>
+
+<link rel="stylesheet" href="/Css/style.css">
+<link rel="stylesheet" href="/Css/mainmenu.css">
+
 </head>
 
 <body>
+<!--Navbar-->>
+<div class="navbar">
 
-<div class="container">
+<div class="nav-left">
+<h1>Music App</h1>
+</div>
 
-  <h1>Main Menu</h1>
-  <h2>Welcome</h2>
+<div class="nav-right">
 
-  <p id="userEmail"></p>
+<input 
+type="text"
+id="quickSearch"
+placeholder="Search songs..."
+>
 
-  <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
-
-    <button onclick="goToSongSearch()">Search Songs</button>
-
-    <button onclick="logout()">Logout</button>
-
-  </div>
+<button id="logoutBtn">Logout</button>
 
 </div>
 
-<!-- Firebase compat -->
+</div>
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<button id="homeBtn">Home</button>
+<button id="searchBtn">Search</button>
+<button id="playlistBtn">Playlist</button>
+<button id="profileBtn">Profile</button>
+
+</div>
+
+
+<!-- CONTENT -->
+
+<div class="content">
+
+<h2>Song Suggestions</h2>
+
+<div class="song-grid">
+
+<div class="song-card">
+<div class="song-thumb"></div>
+<div class="song-title">Placeholder Song</div>
+<div class="song-artist">Artist Name</div>
+</div>
+
+<div class="song-card">
+<div class="song-thumb"></div>
+<div class="song-title">Placeholder Song</div>
+<div class="song-artist">Artist Name</div>
+</div>
+
+<div class="song-card">
+<div class="song-thumb"></div>
+<div class="song-title">Placeholder Song</div>
+<div class="song-artist">Artist Name</div>
+</div>
+
+<div class="song-card">
+<div class="song-thumb"></div>
+<div class="song-title">Placeholder Song</div>
+<div class="song-artist">Artist Name</div>
+</div>
+
+<div class="song-card">
+<div class="song-thumb"></div>
+<div class="song-title">Placeholder Song</div>
+<div class="song-artist">Artist Name</div>
+</div>
+
+<div class="song-card">
+<div class="song-thumb"></div>
+<div class="song-title">Placeholder Song</div>
+<div class="song-artist">Artist Name</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- Firebase -->
+
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
 
 <script src="../Script/firebase-config.js"></script>
-
-<script>
-
-const auth = firebase.auth();
-const userEmailText = document.getElementById("userEmail");
-
-
-/* Check login state */
-auth.onAuthStateChanged(user => {
-
-  if(user){
-    userEmailText.textContent = "Logged in as: " + user.email;
-  }else{
-    window.location.href = "login.html";
-  }
-
-});
-
-
-/* Go to song page */
-function goToSongSearch(){
-  window.location.href = "song.html";
-}
-
-
-/* Logout */
-function logout(){
-
-  auth.signOut().then(() => {
-    window.location.href = "login.html";
-  });
-
-}
-
-</script>
+<script src="../Script/mainmenu.js"></script>
 
 </body>
 </html>
