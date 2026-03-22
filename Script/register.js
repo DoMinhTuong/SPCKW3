@@ -21,7 +21,7 @@ form.addEventListener("submit", async (e) => {
       createdAt: new Date()
     });
 
-    message.textContent = "Registration successful!";
+    message.textContent = "Đăng kí tài khoản thành công!";
     message.style.color = "green";
     form.reset();
 
