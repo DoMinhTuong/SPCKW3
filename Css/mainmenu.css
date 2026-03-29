@@ -1,310 +1,200 @@
-/* =========================================
-   MAINMENU LAYOUT STYLES
-   This file controls the dashboard layout
-   ========================================= */
-/* ===============================
-   GLOBAL RESET
-   Remove unwanted spacing
-   =============================== */
-
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html, body{
-width:100%;
-height:100%;
+html,
+body {
+  width: 100%;
+  min-height: 100%;
 }
 
-/* ===============================
-   GLOBAL PAGE STRUCTURE
-   =============================== */
-
-body{
-display:flex;
-flex-direction:column;
-
-/* allow page to scroll normally */
-min-height:100vh;
-
-margin:0;
-overflow-y:auto;
+body.mainmenu-page {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
 }
 
-
-/* ===============================
-   TOP NAVBAR
-   =============================== */
-
-.navbar{
-
-/* full width navigation bar */
-width:100%;
-height:60px;
-
-background:#1a1d24;
-
-display:flex;
-align-items:center;
-justify-content:space-between;
-
-/* spacing inside navbar */
-padding:0 30px;
-
-border-bottom:1px solid #2c3445;
-
-box-sizing:border-box;
+.navbar {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 24px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
 }
 
-
-/* left section (logo / title) */
-
-.nav-left h1{
-margin:0;
-font-size:22px;
+.nav-left h1 {
+  margin: 0;
+  font-size: 24px;
+  font-family: "Roboto Slab", serif;
 }
 
-
-/* right section (buttons) */
-
-.nav-right{
-display:flex;
-gap:15px;
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-
-.nav-right button{
-
-background:none;
-border:none;
-
-color:#e6e6e6;
-
-font-size:15px;
-
-cursor:pointer;
-
-transition:0.2s;
+#quickSearch {
+  width: 220px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 14px;
 }
 
-.nav-right button:hover{
-
-color:#4f8cff;
-
+#quickSearch:focus {
+  outline: none;
+  border-color: var(--accent);
 }
 
-
-
-/* ===============================
-   MAIN PAGE LAYOUT
-   Sidebar + Content
-   =============================== */
-
-.layout{
-
-display:flex;
-
-width:100%;
-
-flex:1;
-
-min-height:calc(100vh - 60px);
-
+#logoutBtn {
+  padding: 10px 16px;
 }
 
-
-/* ===============================
-   SIDEBAR (LEFT TOOL MENU)
-   =============================== */
-
-.sidebar{
-
-width:20%;
-
-min-width:180px;
-max-width:240px;
-
-background:#15181f;
-
-padding:25px 15px;
-
-border-right:1px solid #2c3445;
-
-display:flex;
-flex-direction:column;
-gap:15px;
-
+.layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 64px);
 }
 
-/* sidebar buttons */
-
-.sidebar button{
-
-background:none;
-
-border:none;
-
-color:#e6e6e6;
-
-text-align:left;
-
-font-size:16px;
-
-cursor:pointer;
-
-padding:10px;
-
-border-radius:6px;
-
-transition:0.2s;
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 16px;
+  background: #15181f;
+  border-right: 1px solid var(--border);
 }
 
-
-.sidebar button:hover{
-
-background:#222733;
-
+.sidebar button {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-primary);
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-
-
-/* ===============================
-   CONTENT AREA
-   =============================== */
-
-.content{
-
-flex:1;
-
-padding:30px;
-
-overflow-y:auto;
-
+.sidebar button:hover {
+  background: var(--bg-input);
 }
 
-
-
-/* ===============================
-   SONG SUGGESTION GRID
-   =============================== */
-
-.song-grid{
-
-display:grid;
-
-/* responsive card layout */
-grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-
-gap:20px;
-
-margin-top:20px;
-
+.content {
+  flex: 1;
+  padding: 28px;
+  overflow-y: auto;
 }
 
-
-
-/* ===============================
-   SONG CARD
-   =============================== */
-
-.song-card{
-
-background:#1a1d24;
-
-padding:15px;
-
-border-radius:10px;
-
-border:1px solid #2c3445;
-
-cursor:pointer;
-
-transition:0.2s;
+.content h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
 }
 
-
-.song-card:hover{
-
-transform:translateY(-3px);
-
-background:#222733;
-
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
 }
 
-
-
-/* ===============================
-   SONG THUMBNAIL (placeholder)
-   =============================== */
-
-.song-thumb{
-
-width:100%;
-
-height:150px;
-
-background:#333;
-
-border-radius:6px;
-
-margin-bottom:10px;
-
+.song-card {
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
 }
 
-
-
-/* ===============================
-   SONG TEXT
-   =============================== */
-
-.song-title{
-
-font-weight:600;
-
-font-size:15px;
-
+.song-card:hover {
+  transform: translateY(-3px);
+  background: #222733;
 }
 
-
-.song-artist{
-
-font-size:14px;
-
-color:#a9b1c6;
-
-}
-/* ===============================
-   NAVBAR SEARCH BAR
-   =============================== */
-
-#quickSearch{
-
-background:#222733;
-
-border:1px solid #2c3445;
-
-color:white;
-
-padding:6px 12px;
-
-border-radius:6px;
-
-outline:none;
-
-font-size:14px;
-
-width:200px;
-
-transition:0.2s;
-
+.song-thumb {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  background: #333;
 }
 
-#quickSearch:focus{
+.song-title {
+  margin-bottom: 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
 
-border-color:#4f8cff;
+.song-artist {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
 
-background:#1f2330;
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+  }
 
+  .nav-right {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #quickSearch,
+  #logoutBtn {
+    width: 100%;
+  }
+
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar button {
+    width: calc(50% - 6px);
+  }
+
+  .content {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar button {
+    width: 100%;
+  }
+
+  .song-grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -3,101 +3,81 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Menu</title>
 
-    <link rel="stylesheet" href="/Css/style.css">
-    <link rel="stylesheet" href="/Css/mainmenu.css">
-
+    <link rel="stylesheet" href="../Css/style.css">
+    <link rel="stylesheet" href="../Css/mainmenu.css">
 </head>
 
-<body>
-    <!--Navbar-->>
+<body class="mainmenu-page">
     <div class="navbar">
-
         <div class="nav-left">
             <h1>Music App</h1>
         </div>
 
         <div class="nav-right">
-
             <input type="text" id="quickSearch" placeholder="Search songs...">
+            <button type="button" id="logoutBtn">Logout</button>
+        </div>
+    </div>
 
-            <a href="/Html/login.html"id="logoutBtn">Logout</a>
-
+    <div class="layout">
+        <div class="sidebar">
+            <button type="button" id="homeBtn">Home</button>
+            <button type="button" id="searchBtn">Search</button>
+            <button type="button" id="playlistBtn">Playlist</button>
+            <button type="button" id="profileBtn">Profile</button>
         </div>
 
-    </div>
-    <!-- SIDEBAR -->
+        <div class="content">
+            <h2>Song Suggestions</h2>
 
-    <div class="sidebar">
+            <div class="song-grid">
+                <div class="song-card">
+                    <div class="song-thumb"></div>
+                    <div class="song-title">Placeholder Song</div>
+                    <div class="song-artist">Artist Name</div>
+                </div>
 
-        <button id="homeBtn">Home</button>
-        <button id="searchBtn">Search</button>
-        <button id="playlistBtn">Playlist</button>
-        <button id="profileBtn">Profile</button>
+                <div class="song-card">
+                    <div class="song-thumb"></div>
+                    <div class="song-title">Placeholder Song</div>
+                    <div class="song-artist">Artist Name</div>
+                </div>
 
-    </div>
+                <div class="song-card">
+                    <div class="song-thumb"></div>
+                    <div class="song-title">Placeholder Song</div>
+                    <div class="song-artist">Artist Name</div>
+                </div>
 
+                <div class="song-card">
+                    <div class="song-thumb"></div>
+                    <div class="song-title">Placeholder Song</div>
+                    <div class="song-artist">Artist Name</div>
+                </div>
 
-    <!-- CONTENT -->
+                <div class="song-card">
+                    <div class="song-thumb"></div>
+                    <div class="song-title">Placeholder Song</div>
+                    <div class="song-artist">Artist Name</div>
+                </div>
 
-    <div class="content">
-
-        <h2>Song Suggestions</h2>
-
-        <div class="song-grid">
-
-            <div class="song-card">
-                <div class="song-thumb"></div>
-                <div class="song-title">Placeholder Song</div>
-                <div class="song-artist">Artist Name</div>
+                <div class="song-card">
+                    <div class="song-thumb"></div>
+                    <div class="song-title">Placeholder Song</div>
+                    <div class="song-artist">Artist Name</div>
+                </div>
             </div>
-
-            <div class="song-card">
-                <div class="song-thumb"></div>
-                <div class="song-title">Placeholder Song</div>
-                <div class="song-artist">Artist Name</div>
-            </div>
-
-            <div class="song-card">
-                <div class="song-thumb"></div>
-                <div class="song-title">Placeholder Song</div>
-                <div class="song-artist">Artist Name</div>
-            </div>
-
-            <div class="song-card">
-                <div class="song-thumb"></div>
-                <div class="song-title">Placeholder Song</div>
-                <div class="song-artist">Artist Name</div>
-            </div>
-
-            <div class="song-card">
-                <div class="song-thumb"></div>
-                <div class="song-title">Placeholder Song</div>
-                <div class="song-artist">Artist Name</div>
-            </div>
-
-            <div class="song-card">
-                <div class="song-thumb"></div>
-                <div class="song-title">Placeholder Song</div>
-                <div class="song-artist">Artist Name</div>
-            </div>
-
         </div>
-
     </div>
-
-    </div>
-
-
-    <!-- Firebase -->
 
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
 
     <script src="../Script/firebase-config.js"></script>
     <script src="../Script/mainmenu.js"></script>
-
 </body>
 
 </html>
