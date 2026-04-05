@@ -126,3 +126,51 @@ button:hover {
 .container {
   text-align: center;
 }
+
+/* =========================
+   Google Button Styling
+   ========================= */
+
+.googleBtn {
+  max-width: 320px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.75rem;
+
+  padding: 0.5rem 1.4rem;
+
+  font-size: 0.875rem;
+  line-height: 1;
+  font-weight: 700;
+
+  text-align: center;
+  text-transform: uppercase;
+
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+
+  color: rgb(65, 63, 63);
+  background-color: #fff;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+
+  margin: 0 auto; /* ⭐ centers the button */
+}
+
+/* Fix: Correct SVG targeting + proper icon size */
+.googleBtn svg {
+  width: 18px;      /* Balanced Google icon size */
+  height: 18px;
+  flex-shrink: 0;   /* Prevents stretching */
+}
+
+/* Fix: Limit hover effect only to Google button */
+.googleBtn:hover {
+  transform: scale(1.02);
+}
