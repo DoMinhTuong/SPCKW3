@@ -22,11 +22,11 @@ document.getElementById("searchBtn").onclick = () => {
 };
 
 document.getElementById("playlistBtn").onclick = () => {
-    alert("Playlist feature coming soon");
+    window.location.href = "playlist.html";
 };
 
 document.getElementById("profileBtn").onclick = () => {
-    alert("Profile feature coming soon");
+    window.location.href = "profile.html"
 };
 
 document.getElementById("logoutBtn").onclick = () => {
