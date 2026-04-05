@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
       message.textContent =
-        "Login successful!";
+        "Đăng nhập thành công!";
 
       message.style.color =
         "green";
