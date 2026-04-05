@@ -22,6 +22,10 @@ body.mainmenu-page {
   overflow-x: hidden;
 }
 
+/* =======================
+   NAVBAR
+======================= */
+
 .navbar {
   width: 100%;
   height: 64px;
@@ -37,7 +41,7 @@ body.mainmenu-page {
 .nav-left h1 {
   margin: 0;
   font-size: 24px;
-  font-family: "Roboto Slab", serif;
+  font-family: "Impact", serif;
 }
 
 .nav-right {
@@ -46,8 +50,9 @@ body.mainmenu-page {
   gap: 12px;
 }
 
+/* Fixed missing semicolon */
 #quickSearch {
-  width: 220px;
+  max-width: 200px;
   margin: 0;
   padding: 10px 12px;
   border: 1px solid var(--border);
@@ -63,8 +68,13 @@ body.mainmenu-page {
 }
 
 #logoutBtn {
+  max-width: 100px;
   padding: 10px 16px;
 }
+
+/* =======================
+   MAIN LAYOUT
+======================= */
 
 .layout {
   display: flex;
@@ -111,6 +121,10 @@ body.mainmenu-page {
   font-size: 28px;
 }
 
+/* =======================
+   SONG GRID
+======================= */
+
 .song-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -150,23 +164,53 @@ body.mainmenu-page {
   color: var(--text-secondary);
 }
 
+/* =======================
+   TABLET (≤768px)
+   Fix navbar only
+======================= */
+
 @media (max-width: 768px) {
+
   .navbar {
     height: auto;
     flex-direction: column;
     align-items: stretch;
     padding: 16px;
+    gap: 12px;
   }
 
+  /* Keep search + logout in same row */
   .nav-right {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  #quickSearch,
-  #logoutBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
     width: 100%;
   }
+
+  /* Search expands */
+  #quickSearch {
+    flex: 1;
+    max-width: none;
+  }
+
+  /* Logout stays fixed */
+  #logoutBtn {
+    flex-shrink: 0;
+    width: auto;
+  }
+
+  .content {
+    padding: 20px 16px;
+  }
+}
+
+/* =======================
+   MOBILE (≤480px)
+   Sidebar collapses here
+======================= */
+
+@media (max-width: 480px) {
 
   .layout {
     flex-direction: column;
@@ -182,16 +226,6 @@ body.mainmenu-page {
 
   .sidebar button {
     width: calc(50% - 6px);
-  }
-
-  .content {
-    padding: 20px 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .sidebar button {
-    width: 100%;
   }
 
   .song-grid {
