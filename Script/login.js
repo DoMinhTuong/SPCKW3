@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         message.style.color = "green";
 
         message.innerText =
-          "Google login successful!";
+          "Đăng nhập qua tài khoàn Google thành công!";
 
         setTimeout(() => {
 

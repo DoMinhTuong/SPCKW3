@@ -29,4 +29,37 @@ form.addEventListener("submit", async (e) => {
     message.textContent = error.message;
     message.style.color = "red";
   }
+  googleBtn.addEventListener("click", () => {
+
+    const provider =
+      new firebase.auth.GoogleAuthProvider();
+
+    auth.signInWithPopup(provider)
+
+      .then(() => {
+
+        message.style.color = "green";
+
+        message.innerText =
+          "Đăng nhập qua tài khoàn Google thành công!";
+
+        setTimeout(() => {
+
+          window.location.href =
+            "/Html/mainmenu.html";
+
+        }, 1000);
+
+      })
+
+      .catch((error) => {
+
+        message.style.color = "red";
+
+        message.innerText =
+          error.message;
+
+      });
+
+  });
 });
