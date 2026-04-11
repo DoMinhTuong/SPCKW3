@@ -4,75 +4,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Menu</title>
+    <title>Contact - Echowave</title>
 
     <link rel="stylesheet" href="/Css/style.css">
     <link rel="stylesheet" href="/Css/mainmenu.css">
 </head>
 
 <body class="mainmenu-page">
+
+    <!-- Navbar -->
     <div class="navbar">
         <div class="nav-left">
             <h1>Echowave</h1>
         </div>
 
         <div class="nav-right">
-            <input type="text" id="quickSearch" placeholder="Search songs...">
+            <input type="text" placeholder="Search songs...">
             <button type="button" id="logoutBtn">Logout</button>
         </div>
     </div>
 
+    <!-- Layout -->
     <div class="layout">
+
+        <!-- Sidebar -->
         <div class="sidebar">
-            <button type="button" id="homeBtn">Home</button>
-            <button type="button" id="searchBtn">Search</button>
-            <button type="button" id="playlistBtn">Playlist</button>
-            <button type="button" id="profileBtn">Profile</button>
+            <button type="button" onclick="location.href='mainmenu.html'">
+                Home
+            </button>
+
+            <button type="button">
+                Search
+            </button>
+
+            <button type="button">
+                Playlist
+            </button>
+
+            <button type="button" onclick="location.href='profile.html'">
+                Profile
+            </button>
+
+            <button type="button" onclick="location.href='contact.html'">
+                Contact
+            </button>
         </div>
 
 
-    </div>
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <div class="container">
+
+                <h2>Contact Support</h2>
+
+                <p>
+                    Need help or want to report an issue?
+                    Send us a message below.
+                </p>
+
+                <form id="contactForm">
+
+                    <input type="text" id="name" placeholder="Your Name" required>
+
+                    <input type="email" id="email" placeholder="Your Email" required>
+
+                    <input type="text" id="subject" placeholder="Subject" required>
+
+                    <textarea id="contactMessage" placeholder="Write your message..." rows="5" required></textarea>
+
+                    <button type="submit">
+                        Send Message
+                    </button>
+
+                    <p id="message"></p>
+
+                </form>
+
+            </div>
+
+        </div>
+
     </div>
 
+
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
 
     <script src="../Script/firebase-config.js"></script>
-    <script src="../Script/mainmenu.js"></script>
+
+
+    <!-- Contact Form Script -->
+    <script>
+
+        const form = document.getElementById("contactForm");
+        const message = document.getElementById("message");
+
+        form.addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            message.textContent = "Message sent successfully!";
+            message.className = "success";
+
+            form.reset();
+
+        });
+
+    </script>
+
 </body>
 
-</html>
+<!-- Footer -->
 <footer class="footer">
+
     <div class="footer-container">
 
-        <!-- Logo / Brand -->
         <div class="footer-section">
-            <h2 class="footer-logo">YourMusic</h2>
+            <h2 class="footer-logo">Echowave</h2>
             <p>Discover, stream, and share your favorite music.</p>
         </div>
 
-        <!-- Navigation Links -->
         <div class="footer-section">
             <h3>Navigation</h3>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore.html">Explore</a></li>
-                <li><a href="library.html">Library</a></li>
+                <li><a href="mainmenu.html">Home</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">Library</a></li>
                 <li><a href="profile.html">Profile</a></li>
             </ul>
         </div>
 
-        <!-- Support Links -->
         <div class="footer-section">
             <h3>Support</h3>
             <ul>
-                <li><a href="#">Help Center</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Terms of Service</a></li>
             </ul>
         </div>
 
-        <!-- Social Media -->
         <div class="footer-section">
             <h3>Follow Us</h3>
             <div class="social-icons">
@@ -84,9 +156,10 @@
 
     </div>
 
-    <!-- Bottom Bar -->
     <div class="footer-bottom">
-        <p>© 2026 YourMusic. All rights reserved.</p>
+        <p>© 2026 Echowave. All rights reserved.</p>
     </div>
 
 </footer>
+
+</html>
