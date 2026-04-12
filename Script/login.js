@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
 
         window.location.href =
-          "/Html/mainmenu.html";
+          "index.html";
 
       }, 1000);
 
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
 
           window.location.href =
-            "/Html/mainmenu.html";
+            "index.html";
 
         }, 1000);
 

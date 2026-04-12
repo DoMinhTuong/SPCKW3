@@ -46,7 +46,7 @@ form.addEventListener("submit", async (e) => {
         setTimeout(() => {
 
           window.location.href =
-            "/Html/mainmenu.html";
+            "index.html";
 
         }, 1000);
 
