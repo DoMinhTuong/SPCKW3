@@ -65,32 +65,6 @@ body.mainmenu-page {
   gap: 12px;
 }
 
-/* SEARCH */
-
-#quickSearch {
-  max-width: 200px;
-
-  padding: 10px 12px;
-
-  border: 1px solid var(--border);
-  border-radius: 6px;
-
-  background: var(--bg-input);
-  color: var(--text-primary);
-}
-
-#quickSearch:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-/* LOGOUT */
-
-#logoutBtn {
-  max-width: 100px;
-  padding: 10px 16px;
-}
-
 /* =======================
    MAIN LAYOUT
 ======================= */
@@ -101,7 +75,9 @@ body.mainmenu-page {
   min-height: calc(100vh - 64px);
 }
 
-/* SIDEBAR */
+/* =======================
+   SIDEBAR
+======================= */
 
 .sidebar {
   width: 220px;
@@ -116,33 +92,51 @@ body.mainmenu-page {
   border-right: 1px solid var(--border);
 }
 
-/* 🔥 FIX QUAN TRỌNG — chữ sidebar */
+/* FIX: CENTER BUTTON CONTENT */
 
 .sidebar button {
   width: 100%;
 
-  padding: 12px 14px;
+  padding: 14px 16px;
 
   border: none;
-  border-radius: 8px;
+  border-radius: 100px;
 
   background: transparent;
 
-  color: #ffffff; /* FIX */
+  color: #ffffff;
 
-  text-align: left;
-
-  font-size: 16px; /* FIX */
+  font-size: 16px;
 
   cursor: pointer;
 
-  display: block; /* FIX */
+  display: flex;
 
-  visibility: visible; /* FIX */
+  justify-content: center; /* CENTER NGANG */
+
+  align-items: center; /* CENTER DỌC */
+
+  text-align: center;
 }
+
+/* HOVER */
 
 .sidebar button:hover {
   background: var(--bg-input);
+}
+
+/* FIX CHO animated-button */
+
+.sidebar .animated-button {
+  justify-content: center;
+  align-items: center;
+}
+
+/* FIX TEXT CENTER */
+
+.sidebar .animated-button .text {
+  width: 100%;
+  text-align: center;
 }
 
 /* =======================
@@ -161,8 +155,6 @@ body.mainmenu-page {
   align-items: center;
 }
 
-/* FORM CONTAINER */
-
 .content .container {
   width: 100%;
   max-width: 500px;
@@ -171,6 +163,30 @@ body.mainmenu-page {
 .content h2 {
   margin-bottom: 20px;
   font-size: 28px;
+}
+
+/* =======================
+   AVATAR
+======================= */
+
+#userAvatar {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  cursor: pointer;
+
+  border: 2px solid var(--border);
+
+  transition: 0.2s;
+}
+
+#userAvatar:hover {
+  border-color: var(--accent);
+  transform: scale(1.05);
 }
 
 /* =======================
@@ -197,26 +213,4 @@ body.mainmenu-page {
     width: calc(50% - 6px);
   }
 
-}
-
-#userAvatar {
-  width: 42px;
-  height: 42px;
-
-  border-radius: 50%;
-
-  object-fit: cover;
-
-  cursor: pointer;
-
-  border: 2px solid var(--border);
-
-  transition: 0.2s;
-}
-
-/* Hover effect */
-
-#userAvatar:hover {
-  border-color: var(--accent);
-  transform: scale(1.05);
 }

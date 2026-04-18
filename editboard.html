@@ -32,19 +32,15 @@
         />
       </div>
       <script>
-        firebase.auth().onAuthStateChanged(user => {
+        firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+            const avatar = document.getElementById("userAvatar");
 
-  if (user) {
-
-    const avatar = document.getElementById("userAvatar");
-
-    if (user.photoURL) {
-      avatar.src = user.photoURL;
-    }
-
-  }
-
-});
+            if (user.photoURL) {
+              avatar.src = user.photoURL;
+            }
+          }
+        });
       </script>
     </div>
 
