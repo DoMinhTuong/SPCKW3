@@ -198,3 +198,25 @@ body.mainmenu-page {
   }
 
 }
+
+#userAvatar {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  cursor: pointer;
+
+  border: 2px solid var(--border);
+
+  transition: 0.2s;
+}
+
+/* Hover effect */
+
+#userAvatar:hover {
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
