@@ -26,7 +26,7 @@ document.getElementById("playlistBtn").onclick = () => {
 };
 
 document.getElementById("profileBtn").onclick = () => {
-    window.location.href = "profile."
+    window.location.href = "profile.html"
 };
 
 document.getElementById("logoutBtn").onclick = () => {
