@@ -14,7 +14,7 @@ auth.onAuthStateChanged(user => {
 /* Buttons */
 
 document.getElementById("homeBtn").onclick = () => {
-    location.reload();
+    window.location.href = "index.html";
 };
 
 document.getElementById("searchBtn").onclick = () => {
@@ -29,6 +29,10 @@ document.getElementById("profileBtn").onclick = () => {
     window.location.href = "profile.html"
 };
 
+document.getElementById("contactBtn").onclick = () => {
+    window.location.href = "contact.html"
+};
+
 document.getElementById("logoutBtn").onclick = () => {
 
     auth.signOut().then(() => {
@@ -38,3 +42,4 @@ document.getElementById("logoutBtn").onclick = () => {
     });
 
 };
+
