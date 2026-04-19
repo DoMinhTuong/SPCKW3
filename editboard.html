@@ -31,7 +31,7 @@
           onclick="location.href = 'profile.html'"
         />
       </div>
-      <script>
+      <script> /*chuyển về tran profile khi bấm vào avatar*/
         firebase.auth().onAuthStateChanged((user) => {
           if (user) {
             const avatar = document.getElementById("userAvatar");
@@ -87,7 +87,7 @@
           <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
           </svg>
-          <span class="text">Phản hồi</span>
+          <span class="text">Profile</span>
           <span class="circle"></span>
           <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
@@ -136,16 +136,8 @@
           <h3>Hỗ trợ</h3>
           <ul>
             <li><a href="contact.html">Liên hệ</a></li>
+            <p>+84 912 345 678</p>
           </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3>Các trang mạng</h3>
-          <div class="social-icons">
-            <a href="social.html">Facebook</a>
-            <a href="social.html">YouTube</a>
-            <a href="social.html">Discord</a>
-          </div>
         </div>
       </div>
 
