@@ -214,3 +214,26 @@ body.mainmenu-page {
   }
 
 }
+
+.search-button {
+  padding: 0 18px; /* no vertical padding */
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+/* Hover */
+.search-button:hover {
+  background-color: black;
+  color: white;
+}
+
+/* Click */
+.search-button:active {
+  transform: scale(0.95);
+}
