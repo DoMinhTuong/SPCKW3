@@ -43,3 +43,55 @@ document.getElementById("logoutBtn").onclick = () => {
 
 };
 
+const miniAudio =
+document.getElementById("miniAudio");
+
+const miniPlay =
+document.getElementById("miniPlay");
+
+const miniPause =
+document.getElementById("miniPause");
+
+const miniProgress =
+document.getElementById("miniProgress");
+
+const miniTitle =
+document.getElementById("miniTitle");
+
+const miniArtist =
+document.getElementById("miniArtist");
+
+const miniThumb =
+document.getElementById("miniThumb");
+
+/* Play Button */
+
+miniPlay.onclick = () => {
+
+  miniAudio.play();
+
+};
+
+/* Pause Button */
+
+miniPause.onclick = () => {
+
+  miniAudio.pause();
+
+};
+
+/* Progress Update */
+
+miniAudio.addEventListener(
+"timeupdate",
+
+() => {
+
+  const percent =
+  (miniAudio.currentTime /
+   miniAudio.duration) * 100;
+
+  miniProgress.style.width =
+  percent + "%";
+
+});
