@@ -95,3 +95,25 @@ miniAudio.addEventListener(
   percent + "%";
 
 });
+function loadMiniPlayer(track) {
+
+  miniTitle.textContent =
+  track.title;
+
+  miniArtist.textContent =
+  track.user.name;
+
+  miniThumb.src =
+  track.artwork["150x150"];
+
+  miniAudio.src =
+  `https://discoveryprovider.audius.co/v1/tracks/${track.id}/stream`;
+
+}
+button.onclick = () => {
+
+  loadMiniPlayer(track);
+
+  miniAudio.play();
+
+};
