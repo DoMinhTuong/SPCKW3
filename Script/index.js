@@ -42,78 +42,70 @@ document.getElementById("logoutBtn").onclick = () => {
     });
 
 };
+const API =
+"https://discoveryprovider.audius.co/v1";
 
-const miniAudio =
-document.getElementById("miniAudio");
+/* Player Elements */
 
-const miniPlay =
-document.getElementById("miniPlay");
+const playerAudio =
+document.getElementById("playerAudio");
 
-const miniPause =
-document.getElementById("miniPause");
+const playerTitle =
+document.getElementById("playerTitle");
 
-const miniProgress =
-document.getElementById("miniProgress");
+const playerArtist =
+document.getElementById("playerArtist");
 
-const miniTitle =
-document.getElementById("miniTitle");
+const playerThumb =
+document.getElementById("playerThumb");
 
-const miniArtist =
-document.getElementById("miniArtist");
+const playerPlay =
+document.getElementById("playerPlay");
 
-const miniThumb =
-document.getElementById("miniThumb");
+const playerPause =
+document.getElementById("playerPause");
 
-/* Play Button */
+const playerProgress =
+document.getElementById("playerProgress");
 
-miniPlay.onclick = () => {
+/* Controls */
 
-  miniAudio.play();
+playerPlay.onclick =
+() => playerAudio.play();
 
-};
+playerPause.onclick =
+() => playerAudio.pause();
 
-/* Pause Button */
+/* Progress */
 
-miniPause.onclick = () => {
-
-  miniAudio.pause();
-
-};
-
-/* Progress Update */
-
-miniAudio.addEventListener(
+playerAudio.addEventListener(
 "timeupdate",
 
 () => {
 
   const percent =
-  (miniAudio.currentTime /
-   miniAudio.duration) * 100;
+  (playerAudio.currentTime /
+   playerAudio.duration) * 100;
 
-  miniProgress.style.width =
+  playerProgress.style.width =
   percent + "%";
 
 });
-function loadMiniPlayer(track) {
 
-  miniTitle.textContent =
+/* Load Song into Player */
+
+function loadPlayer(track) {
+
+  playerTitle.textContent =
   track.title;
 
-  miniArtist.textContent =
+  playerArtist.textContent =
   track.user.name;
 
-  miniThumb.src =
-  track.artwork["150x150"];
+  playerThumb.src =
+  track.artwork["480x480"];
 
-  miniAudio.src =
-  `https://discoveryprovider.audius.co/v1/tracks/${track.id}/stream`;
+  playerAudio.src =
+  `${API}/tracks/${track.id}/stream`;
 
 }
-button.onclick = () => {
-
-  loadMiniPlayer(track);
-
-  miniAudio.play();
-
-};
