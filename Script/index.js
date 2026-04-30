@@ -43,69 +43,104 @@ document.getElementById("logoutBtn").onclick = () => {
 
 };
 const API =
-"https://discoveryprovider.audius.co/v1";
+    "https://discoveryprovider.audius.co/v1";
 
 /* Player Elements */
 
 const playerAudio =
-document.getElementById("playerAudio");
+    document.getElementById("playerAudio");
 
 const playerTitle =
-document.getElementById("playerTitle");
+    document.getElementById("playerTitle");
 
 const playerArtist =
-document.getElementById("playerArtist");
+    document.getElementById("playerArtist");
 
 const playerThumb =
-document.getElementById("playerThumb");
+    document.getElementById("playerThumb");
 
 const playerPlay =
-document.getElementById("playerPlay");
+    document.getElementById("playerPlay");
 
 const playerPause =
-document.getElementById("playerPause");
+    document.getElementById("playerPause");
 
 const playerProgress =
-document.getElementById("playerProgress");
+    document.getElementById("playerProgress");
 
 /* Controls */
 
 playerPlay.onclick =
-() => playerAudio.play();
+    () => playerAudio.play();
 
 playerPause.onclick =
-() => playerAudio.pause();
+    () => playerAudio.pause();
 
 /* Progress */
 
 playerAudio.addEventListener(
-"timeupdate",
+    "timeupdate",
 
-() => {
+    () => {
+        if (!playerAudio.duration) return;
 
-  const percent =
-  (playerAudio.currentTime /
-   playerAudio.duration) * 100;
+        const percent =
+            (playerAudio.currentTime / playerAudio.duration) * 100;
 
-  playerProgress.style.width =
-  percent + "%";
+        playerProgress.style.width =
+            percent + "%";
 
-});
+    });
 
 /* Load Song into Player */
 
 function loadPlayer(track) {
 
-  playerTitle.textContent =
-  track.title;
+  playerTitle.textContent = track.title;
 
-  playerArtist.textContent =
-  track.user.name;
+  playerArtist.textContent = track.user.name;
 
   playerThumb.src =
-  track.artwork["480x480"];
+    track.artwork?.["480x480"] || "/Img/blankmusic.png";
 
   playerAudio.src =
-  `${API}/tracks/${track.id}/stream`;
+    `${API}/tracks/${track.id}/stream?app_name=Echowave`;
 
+  playerAudio.play(); // ← ADD DÒNG NÀY (optional bạn hỏi)
 }
+
+/* Load 1 song for homepage card */
+
+async function loadOneSong() {
+
+    const res = await fetch(
+        `${API}/tracks/trending?limit=1&app_name=Echowave`
+    );
+
+    const data = await res.json();
+    const track = data.data[0];
+
+    /* Fill UI card */
+    document.getElementById("cardThumb").src =
+        track.artwork?.["480x480"] || "/Img/blankmusic.png";
+
+    document.getElementById("cardTitle").textContent =
+        track.title;
+
+    document.getElementById("cardMeta").textContent =
+        (track.release_date
+            ? track.release_date.split("-")[0]
+            : "Unknown") +
+        " • " +
+        track.user.name;
+
+    /* Click → send to player */
+    document.getElementById("musicCard").onclick = () => {
+
+        loadPlayer(track);
+        playerAudio.play();
+
+    };
+}
+
+loadOneSong();

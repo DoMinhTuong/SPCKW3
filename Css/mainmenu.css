@@ -149,10 +149,6 @@ body.mainmenu-page {
   padding: 28px;
 
   overflow-y: auto;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .content .container {
@@ -455,10 +451,6 @@ body.mainmenu-page {
 
 }
 
-/* =========================
-   RIGHT PLAYER
-========================= */
-
 .right-player {
 
   width: 260px;
@@ -470,17 +462,15 @@ body.mainmenu-page {
   padding: 15px;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
 
   color: white;
 
+  margin-left: auto;
 }
 
 /* Player Image */
-
 .player-thumb {
 
   width: 180px;

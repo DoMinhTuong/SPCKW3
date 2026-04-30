@@ -32,7 +32,8 @@
           onclick="location.href = 'profile.html'"
         />
       </div>
-      <script> /*chuyển về tran profile khi bấm vào avatar*/
+      <script>
+        /*chuyển về tran profile khi bấm vào avatar*/
         firebase.auth().onAuthStateChanged((user) => {
           if (user) {
             const avatar = document.getElementById("userAvatar");
@@ -52,126 +53,174 @@
         <!-- Tren (Top buttons) -->
 
         <button id="homeBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Trang chính</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="searchBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Tìm kiếm</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="playlistBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Danh sách phát</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="profileBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Profile</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="contactBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Phản hồi</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
       </div>
-    </div>
+      <div class="main-content">
+  <div class="recommend-section">
+    <h2>Recommended</h2>
 
+    <div class="music-card" id="musicCard">
+      <img id="cardThumb" src="/Img/blankmusic.png" />
 
-
-<div class="right-player">
-
-  <h3>Now Playing</h3>
-
-  <img
-    id="playerThumb"
-    class="player-thumb"
-    src=""
-  >
-
-  <div
-    id="playerTitle"
-    class="player-title">
-    No song selected
-  </div>
-
-  <div
-    id="playerArtist"
-    class="player-artist">
-    ---
-  </div>
-
-  <div class="progress-container">
-
-    <div
-      id="playerProgress"
-      class="progress">
+      <div class="card-info">
+        <div id="cardTitle" class="card-title">Loading...</div>
+        <div id="cardMeta" class="card-meta">---</div>
+      </div>
     </div>
 
   </div>
-
-  <div class="player-controls">
-
-    <button id="playerPlay">
-      ▶
-    </button>
-
-    <button id="playerPause">
-      ❚❚
-    </button>
-
-  </div>
-
-  <audio id="playerAudio"></audio>
-
 </div>
+      <div class="right-player">
+        <h3>Now Playing</h3>
 
- 
+        <img id="playerThumb" class="player-thumb" src="/Img/blankmusic.png" />
+
+        <div id="playerTitle" class="player-title">No song selected</div>
+
+        <div id="playerArtist" class="player-artist">---</div>
+
+        <div class="progress-container">
+          <div id="playerProgress" class="progress"></div>
+        </div>
+
+        <div class="player-controls">
+          <button id="playerPlay">▶</button>
+
+          <button id="playerPause">❚❚</button>
+        </div>
+
+        <audio id="playerAudio"></audio>
+      </div>
+    </div>
+
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
 
     <!-- FIXED SCRIPT PATHS -->
-    <script src="../Script/firebase-config.js"></script>
-    <script src="../Script/index.js"></script>
+    <script src="/Script/firebase-config.js"></script>
+    <script src="/Script/index.js"></script>
 
-    <!-- Footer (MOVED INSIDE BODY — IMPORTANT) -->
+    <!-- Footer -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-section">
           <p style="color: aliceblue; font-size: 20px">Echowave</p>
-          <p style="font-size: 15px;">Khám phá, nghe và trải nghiệm những bài nhạc mới</p>
+          <p style="font-size: 15px">
+            Khám phá, nghe và trải nghiệm những bài nhạc mới
+          </p>
         </div>
 
         <div class="footer-section">
@@ -187,7 +236,7 @@
           <p style="color: aliceblue; font-size: 20px">Phản hồi</p>
           <ul>
             <li><a href="contact.html">Liên hệ</a></li>
-            <p style="font-size: 15px;">+84 912 345 678</p>
+            <p style="font-size: 15px">+84 912 345 678</p>
           </ul>
         </div>
       </div>
