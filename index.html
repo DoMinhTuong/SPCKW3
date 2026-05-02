@@ -33,15 +33,18 @@
         />
       </div>
       <script>
-        /*chuyển về tran profile khi bấm vào avatar*/
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
+        document.addEventListener("DOMContentLoaded", () => {
+          firebase.auth().onAuthStateChanged((user) => {
             const avatar = document.getElementById("userAvatar");
 
-            if (user.photoURL) {
+            if (!avatar) return;
+
+            if (user && user.photoURL) {
               avatar.src = user.photoURL;
+            } else {
+              avatar.src = "/Img/dpfp.jpg"; // fallback
             }
-          }
+          });
         });
       </script>
     </div>
@@ -168,20 +171,19 @@
         </button>
       </div>
       <div class="main-content">
-  <div class="recommend-section">
-    <h2>Recommended</h2>
+        <div class="recommend-section">
+          <h2>Recommended</h2>
 
-    <div class="music-card" id="musicCard">
-      <img id="cardThumb" src="/Img/blankmusic.png" />
+          <div class="music-card" id="musicCard">
+            <img id="cardThumb" src="/Img/blankmusic.png" />
 
-      <div class="card-info">
-        <div id="cardTitle" class="card-title">Loading...</div>
-        <div id="cardMeta" class="card-meta">---</div>
+            <div class="card-info">
+              <div id="cardTitle" class="card-title">Loading...</div>
+              <div id="cardMeta" class="card-meta">---</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-  </div>
-</div>
       <div class="right-player">
         <h3>Now Playing</h3>
 

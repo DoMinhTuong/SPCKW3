@@ -110,37 +110,35 @@ function loadPlayer(track) {
 }
 
 /* Load 1 song for homepage card */
-
 async function loadOneSong() {
+    try {
+        const res = await fetch(
+            `${API}/tracks/trending?limit=1&app_name=Echowave`
+        );
 
-    const res = await fetch(
-        `${API}/tracks/trending?limit=1&app_name=Echowave`
-    );
+        const data = await res.json();
 
-    const data = await res.json();
-    const track = data.data[0];
+        if (!data.data || data.data.length === 0) return;
 
-    /* Fill UI card */
-    document.getElementById("cardThumb").src =
-        track.artwork?.["480x480"] || "/Img/blankmusic.png";
+        const track = data.data[0];
 
-    document.getElementById("cardTitle").textContent =
-        track.title;
+        const year = track.release_date?.split("-")[0] || "Unknown";
 
-    document.getElementById("cardMeta").textContent =
-        (track.release_date
-            ? track.release_date.split("-")[0]
-            : "Unknown") +
-        " • " +
-        track.user.name;
+        document.getElementById("cardThumb").src =
+            track.artwork?.["480x480"] || "/Img/blankmusic.png";
 
-    /* Click → send to player */
-    document.getElementById("musicCard").onclick = () => {
+        document.getElementById("cardTitle").textContent =
+            track.title;
 
-        loadPlayer(track);
-        playerAudio.play();
+        document.getElementById("cardMeta").textContent =
+            `${year} • ${track.user.name}`;
 
-    };
+        document.getElementById("musicCard").onclick = () => {
+            loadPlayer(track);
+        };
+
+    } catch (err) {
+        console.error(err);
+    }
 }
-
 loadOneSong();
