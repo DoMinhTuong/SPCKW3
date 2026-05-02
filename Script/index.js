@@ -105,17 +105,17 @@ playerAudio.addEventListener(
 
 function loadPlayer(track) {
 
-  playerTitle.textContent = track.title;
+    playerTitle.textContent = track.title;
 
-  playerArtist.textContent = track.user.name;
+    playerArtist.textContent = track.user.name;
 
-  playerThumb.src =
-    track.artwork?.["480x480"] || "/Img/blankmusic.png";
+    playerThumb.src =
+        track.artwork?.["480x480"] || "/Img/blankmusic.png";
 
-  playerAudio.src =
-    `${API}/tracks/${track.id}/stream?app_name=Echowave`;
+    playerAudio.src =
+        `${API}/tracks/${track.id}/stream?app_name=Echowave`;
 
-  playerAudio.play(); // ← ADD DÒNG NÀY (optional bạn hỏi)
+    playerAudio.play(); // ← ADD DÒNG NÀY (optional bạn hỏi)
 }
 
 /* Load 1 song for homepage card */
@@ -129,7 +129,12 @@ async function loadOneSong() {
 
         if (!data.data || data.data.length === 0) return;
 
-        const track = data.data[0];
+        const tracks = data.data;
+
+        const randomIndex =
+            Math.floor(Math.random() * tracks.length);
+
+        const track = tracks[randomIndex];
 
         const year = track.release_date?.split("-")[0] || "Unknown";
 
