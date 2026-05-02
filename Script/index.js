@@ -2,12 +2,14 @@ const auth = firebase.auth();
 
 auth.onAuthStateChanged(user => {
 
-    const avatar = document.getElementById("userAvatar");
-
     if (!user) {
         window.location.href = "login.html";
         return;
     }
+
+    console.log("PHOTO URL:", user.photoURL); // ✅ an toàn
+
+    const avatar = document.getElementById("userAvatar");
 
     if (avatar) {
         avatar.src = user.photoURL || "/Img/dpfp.jpg";
@@ -38,15 +40,6 @@ document.getElementById("contactBtn").onclick = () => {
     window.location.href = "contact.html"
 };
 
-document.getElementById("logoutBtn").onclick = () => {
-
-    auth.signOut().then(() => {
-
-        window.location.href = "login.html";
-
-    });
-
-};
 const API =
     "https://discoveryprovider.audius.co/v1";
 
