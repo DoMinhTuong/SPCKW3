@@ -33,6 +33,7 @@
         />
       </div>
       <script>
+        console.log(user);
         document.addEventListener("DOMContentLoaded", () => {
           firebase.auth().onAuthStateChanged((user) => {
             const avatar = document.getElementById("userAvatar");
