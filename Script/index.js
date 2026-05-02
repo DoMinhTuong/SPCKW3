@@ -1,11 +1,16 @@
 const auth = firebase.auth();
 
-/* Protect page */
-
 auth.onAuthStateChanged(user => {
+
+    const avatar = document.getElementById("userAvatar");
 
     if (!user) {
         window.location.href = "login.html";
+        return;
+    }
+
+    if (avatar) {
+        avatar.src = user.photoURL || "/Img/dpfp.jpg";
     }
 
 });

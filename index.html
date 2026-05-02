@@ -32,22 +32,6 @@
           onclick="location.href = 'profile.html'"
         />
       </div>
-      <script>
-        console.log(user);
-        document.addEventListener("DOMContentLoaded", () => {
-          firebase.auth().onAuthStateChanged((user) => {
-            const avatar = document.getElementById("userAvatar");
-
-            if (!avatar) return;
-
-            if (user && user.photoURL) {
-              avatar.src = user.photoURL;
-            } else {
-              avatar.src = "/Img/dpfp.jpg"; // fallback
-            }
-          });
-        });
-      </script>
     </div>
 
     <!-- Layout -->
