@@ -68,12 +68,23 @@ const playerProgress =
 
 /* Controls */
 
-playerPlay.onclick =
-    () => playerAudio.play();
+const playerToggle = document.getElementById("playerToggle");
 
-playerPause.onclick =
-    () => playerAudio.pause();
+playerToggle.onclick = () => {
+    if (playerAudio.paused) {
+        playerAudio.play();
+    } else {
+        playerAudio.pause();
+    }
+};
 
+playerAudio.addEventListener("play", () => {
+    playerToggle.textContent = "❚❚";
+});
+
+playerAudio.addEventListener("pause", () => {
+    playerToggle.textContent = "▶";
+});
 /* Progress */
 
 playerAudio.addEventListener(
