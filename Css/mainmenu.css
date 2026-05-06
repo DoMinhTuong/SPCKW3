@@ -451,3 +451,14 @@ body.mainmenu-page {
   gap: 20px;
   padding: 20px;
 }
+
+.recommend-section {
+  flex: 1;
+}
+
+.right-player {
+  width: 285px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+}

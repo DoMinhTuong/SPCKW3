@@ -120,42 +120,53 @@ function loadPlayer(track) {
 
 /* Load 1 song for homepage card */
 async function loadSongs() {
-  try {
+    try {
 
-    const keywords = [
-      "love","chill","remix","night","lofi","edm","sad","vibe"
-    ];
+        const keywords = ["love", "chill", "remix", "edm", "lofi", "sad", "vibe"];
 
-    const randomQuery =
-      keywords[Math.floor(Math.random() * keywords.length)];
+        let allTracks = [];
 
-    let res = await fetch(
-      `${API}/tracks/search?query=${randomQuery}&limit=12&app_name=Echowave`
-    );
+        // fetch nhiều query
+        for (let k of keywords) {
 
-    let data = await res.json();
+            const res = await fetch(
+                `${API}/tracks/search?query=${k}&limit=4&app_name=Echowave`
+            );
 
-    let tracks = data.data;
+            const data = await res.json();
 
-    // fallback
-    if (!tracks || tracks.length === 0) {
-      res = await fetch(
-        `${API}/tracks/trending?limit=12&app_name=Echowave`
-      );
-      data = await res.json();
-      tracks = data.data;
-    }
+            if (data.data) {
+                allTracks = allTracks.concat(data.data);
+            }
+        }
+        // fallback
+        if (!tracks || tracks.length === 0) {
+            res = await fetch(
+                `${API}/tracks/trending?limit=12&app_name=Echowave`
+            );
+            data = await res.json();
+            tracks = data.data;
+        }
+        const uniqueMap = new Map();
 
-    const grid = document.getElementById("musicGrid");
+        allTracks.forEach(track => {
+            uniqueMap.set(track.id, track);
+        });
 
-    grid.innerHTML = ""; // clear
+        allTracks = Array.from(uniqueMap.values());
+        allTracks = allTracks.sort(() => Math.random() - 0.5);
+        const tracks = allTracks.slice(0, 12);
 
-    tracks.forEach(track => {
+        const grid = document.getElementById("musicGrid");
 
-      const card = document.createElement("div");
-      card.className = "music-card";
+        grid.innerHTML = ""; // clear
 
-      card.innerHTML = `
+        tracks.forEach(track => {
+
+            const card = document.createElement("div");
+            card.className = "music-card";
+
+            card.innerHTML = `
         <img src="${track.artwork?.["480x480"] || "/Img/blankmusic.png"}" />
         <div class="card-info">
           <div class="card-title">${track.title}</div>
@@ -163,15 +174,15 @@ async function loadSongs() {
         </div>
       `;
 
-      card.onclick = () => {
-        loadPlayer(track);
-      };
+            card.onclick = () => {
+                loadPlayer(track);
+            };
 
-      grid.appendChild(card);
-    });
+            grid.appendChild(card);
+        });
 
-  } catch (err) {
-    console.error(err);
-  }
+    } catch (err) {
+        console.error(err);
+    }
 }
 loadSongs();
