@@ -119,40 +119,59 @@ function loadPlayer(track) {
 }
 
 /* Load 1 song for homepage card */
-async function loadOneSong() {
-    try {
-        const res = await fetch(
-            `${API}/tracks/trending?limit=20&app_name=Echowave`
-        );
+async function loadSongs() {
+  try {
 
-        const data = await res.json();
+    const keywords = [
+      "love","chill","remix","night","lofi","edm","sad","vibe"
+    ];
 
-        if (!data.data || data.data.length === 0) return;
+    const randomQuery =
+      keywords[Math.floor(Math.random() * keywords.length)];
 
-        const tracks = data.data;
+    let res = await fetch(
+      `${API}/tracks/search?query=${randomQuery}&limit=12&app_name=Echowave`
+    );
 
-        const randomIndex =
-            Math.floor(Math.random() * tracks.length);
+    let data = await res.json();
 
-        const track = tracks[randomIndex];
+    let tracks = data.data;
 
-        const year = track.release_date?.split("-")[0] || "Unknown";
-
-        document.getElementById("cardThumb").src =
-            track.artwork?.["480x480"] || "/Img/blankmusic.png";
-
-        document.getElementById("cardTitle").textContent =
-            track.title;
-
-        document.getElementById("cardMeta").textContent =
-            `${year} • ${track.user.name}`;
-
-        document.getElementById("musicCard").onclick = () => {
-            loadPlayer(track);
-        };
-
-    } catch (err) {
-        console.error(err);
+    // fallback
+    if (!tracks || tracks.length === 0) {
+      res = await fetch(
+        `${API}/tracks/trending?limit=12&app_name=Echowave`
+      );
+      data = await res.json();
+      tracks = data.data;
     }
+
+    const grid = document.getElementById("musicGrid");
+
+    grid.innerHTML = ""; // clear
+
+    tracks.forEach(track => {
+
+      const card = document.createElement("div");
+      card.className = "music-card";
+
+      card.innerHTML = `
+        <img src="${track.artwork?.["480x480"] || "/Img/blankmusic.png"}" />
+        <div class="card-info">
+          <div class="card-title">${track.title}</div>
+          <div class="card-meta">${track.user.name}</div>
+        </div>
+      `;
+
+      card.onclick = () => {
+        loadPlayer(track);
+      };
+
+      grid.appendChild(card);
+    });
+
+  } catch (err) {
+    console.error(err);
+  }
 }
-loadOneSong();
+loadSongs();
