@@ -270,17 +270,26 @@ async function createTrending() {
 /* Load homepage */
 
 async function loadHomepage() {
-
     await createTrending();
+    const sections = [
+        ["Chill", "chill"],
+        ["EDM", "edm"],
+        ["Lofi", "lofi"],
+        ["Remix", "remix"],
+        ["Night Drive", "night"],
+        ["Sad", "sad"],
+        ["Gaming", "gaming"],
+        ["Electronic", "electronic"],
+        ["Relax", "relax"],
+        ["Hip Hop", "hip hop"],
+        ["Pop", "pop"],
+    ];
 
-    await createSection("Chill", "chill");
-
-    await createSection("EDM", "edm");
-
-    await createSection("Lofi", "lofi");
-
-    await createSection("Remix", "remix");
-
+    await Promise.all(
+        sections.map(
+            ([title, query]) =>
+                createSection(title, query)
+        )
+    );
 }
-
 loadHomepage();
