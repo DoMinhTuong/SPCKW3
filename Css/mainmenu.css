@@ -462,3 +462,76 @@ body.mainmenu-page {
   position: sticky;
   top: 80px;
 }
+
+/* =========================
+   MUSIC SECTIONS
+========================= */
+
+.music-section {
+  margin-bottom: 40px;
+}
+
+.music-section h2 {
+  font-size: 28px;
+  margin-bottom: 18px;
+  color: white;
+}
+
+/* Horizontal row */
+
+.music-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+
+.music-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card */
+
+.music-card {
+  min-width: 180px;
+  max-width: 180px;
+  background: #111;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+  transition: 0.25s;
+  flex-shrink: 0;
+}
+
+.music-card:hover {
+  transform: scale(1.05);
+  border-color: rgba(255,255,255,0.35);
+}
+
+.music-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-info {
+  padding: 12px;
+}
+
+.card-title {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-meta {
+  color: #aaa;
+  font-size: 14px;
+}

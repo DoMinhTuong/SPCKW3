@@ -119,70 +119,168 @@ function loadPlayer(track) {
 }
 
 /* Load 1 song for homepage card */
-async function loadSongs() {
+/* =========================
+   HOMEPAGE SECTIONS
+========================= */
+
+async function createSection(title, query) {
+
     try {
 
-        const keywords = ["love", "chill", "remix", "edm", "lofi", "sad", "vibe"];
+        const res = await fetch(
+            `${API}/tracks/search?query=${query}&limit=10&app_name=Echowave`
+        );
 
-        let allTracks = [];
+        const data = await res.json();
 
-        // fetch nhiều query
-        for (let k of keywords) {
+        const tracks = data.data || [];
 
-            const res = await fetch(
-                `${API}/tracks/search?query=${k}&limit=4&app_name=Echowave`
-            );
+        const sections =
+            document.getElementById("musicSections");
 
-            const data = await res.json();
+        // section
+        const section =
+            document.createElement("div");
 
-            if (data.data) {
-                allTracks = allTracks.concat(data.data);
-            }
-        }
-        // fallback
-        if (!tracks || tracks.length === 0) {
-            res = await fetch(
-                `${API}/tracks/trending?limit=12&app_name=Echowave`
-            );
-            data = await res.json();
-            tracks = data.data;
-        }
-        const uniqueMap = new Map();
+        section.className = "music-section";
 
-        allTracks.forEach(track => {
-            uniqueMap.set(track.id, track);
-        });
+        section.innerHTML =
+            `<h2>${title}</h2>`;
 
-        allTracks = Array.from(uniqueMap.values());
-        allTracks = allTracks.sort(() => Math.random() - 0.5);
-        const tracks = allTracks.slice(0, 12);
+        // row
+        const row =
+            document.createElement("div");
 
-        const grid = document.getElementById("musicGrid");
-
-        grid.innerHTML = ""; // clear
+        row.className = "music-row";
 
         tracks.forEach(track => {
 
-            const card = document.createElement("div");
+            const card =
+                document.createElement("div");
+
             card.className = "music-card";
 
             card.innerHTML = `
-        <img src="${track.artwork?.["480x480"] || "/Img/blankmusic.png"}" />
-        <div class="card-info">
-          <div class="card-title">${track.title}</div>
-          <div class="card-meta">${track.user.name}</div>
-        </div>
-      `;
+                <img src="${track.artwork?.["480x480"] || "/Img/blankmusic.png"}">
+
+                <div class="card-info">
+
+                    <div class="card-title">
+                        ${track.title}
+                    </div>
+
+                    <div class="card-meta">
+                        ${track.user.name}
+                    </div>
+
+                </div>
+            `;
 
             card.onclick = () => {
                 loadPlayer(track);
             };
 
-            grid.appendChild(card);
+            row.appendChild(card);
+
         });
 
+        section.appendChild(row);
+
+        sections.appendChild(section);
+
     } catch (err) {
+
         console.error(err);
+
     }
 }
-loadSongs();
+
+/* Trending */
+
+async function createTrending() {
+
+    try {
+
+        const res = await fetch(
+            `${API}/tracks/trending?limit=10&app_name=Echowave`
+        );
+
+        const data = await res.json();
+
+        const tracks = data.data || [];
+
+        const sections =
+            document.getElementById("musicSections");
+
+        const section =
+            document.createElement("div");
+
+        section.className = "music-section";
+
+        section.innerHTML =
+            `<h2>Trending</h2>`;
+
+        const row =
+            document.createElement("div");
+
+        row.className = "music-row";
+
+        tracks.forEach(track => {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "music-card";
+
+            card.innerHTML = `
+                <img src="${track.artwork?.["480x480"] || "/Img/blankmusic.png"}">
+
+                <div class="card-info">
+
+                    <div class="card-title">
+                        ${track.title}
+                    </div>
+
+                    <div class="card-meta">
+                        ${track.user.name}
+                    </div>
+
+                </div>
+            `;
+
+            card.onclick = () => {
+                loadPlayer(track);
+            };
+
+            row.appendChild(card);
+
+        });
+
+        section.appendChild(row);
+
+        sections.appendChild(section);
+
+    } catch (err) {
+
+        console.error(err);
+
+    }
+}
+
+/* Load homepage */
+
+async function loadHomepage() {
+
+    await createTrending();
+
+    await createSection("Chill", "chill");
+
+    await createSection("EDM", "edm");
+
+    await createSection("Lofi", "lofi");
+
+    await createSection("Remix", "remix");
+
+}
+
+loadHomepage();
