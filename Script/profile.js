@@ -42,3 +42,31 @@ document.getElementById("logoutBtn").onclick = () => {
     });
 
 };
+firebase.auth().onAuthStateChanged((user) => {
+  // Nếu chưa đăng nhập -> chuyển về login
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  // Elements
+  const profilePicture = document.getElementById("profilePicture");
+  const profileName = document.getElementById("profileName");
+  const profileEmail = document.getElementById("profileEmail");
+  const navbarAvatar = document.getElementById("userAvatar");
+
+  // Profile Picture
+  if (user.photoURL) {
+    profilePicture.src = user.photoURL;
+    navbarAvatar.src = user.photoURL;
+  } else {
+    profilePicture.src = "/Img/dpfp.jpg";
+    navbarAvatar.src = "/Img/dpfp.jpg";
+  }
+
+  // Name
+  profileName.textContent = user.displayName || "Unknown User";
+
+  // Email
+  profileEmail.textContent = user.email || "No Email";
+});

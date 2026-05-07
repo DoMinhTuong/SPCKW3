@@ -32,17 +32,6 @@
           onclick="location.href = 'profile.html'"
         />
       </div>
-      <script> /*chuyển về tran profile khi bấm vào avatar*/
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            const avatar = document.getElementById("userAvatar");
-
-            if (user.photoURL) {
-              avatar.src = user.photoURL;
-            }
-          }
-        });
-      </script>
     </div>
 
     <!-- Layout -->
@@ -52,59 +41,128 @@
         <!-- Tren (Top buttons) -->
 
         <button id="homeBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Trang chính</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="searchBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Tìm kiếm</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="playlistBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Danh sách phát</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="profileBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Profile</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="contactBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Phản hồi</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
+      </div>
+      <!-- Profile Content -->
+      <div class="profile-container">
+        <div class="profile-card">
+          <img src="/Img/dpfp.jpg" alt="Profile Picture" id="profilePicture" />
+
+          <h2 id="profileName">Loading...</h2>
+          <p id="profileEmail">Loading...</p>
+        </div>
       </div>
     </div>
 
@@ -121,7 +179,9 @@
       <div class="footer-container">
         <div class="footer-section">
           <p style="color: aliceblue; font-size: 20px">Echowave</p>
-          <p style="font-size: 15px;">Khám phá, nghe và trải nghiệm những bài nhạc mới</p>
+          <p style="font-size: 15px">
+            Khám phá, nghe và trải nghiệm những bài nhạc mới
+          </p>
         </div>
 
         <div class="footer-section">
@@ -137,7 +197,7 @@
           <p style="color: aliceblue; font-size: 20px">Phản hồi</p>
           <ul>
             <li><a href="contact.html">Liên hệ</a></li>
-            <p style="font-size: 15px;">+84 912 345 678</p>
+            <p style="font-size: 15px">+84 912 345 678</p>
           </ul>
         </div>
       </div>
