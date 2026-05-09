@@ -32,17 +32,6 @@
           onclick="location.href = 'profile.html'"
         />
       </div>
-      <script>
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            const avatar = document.getElementById("userAvatar");
-
-            if (user.photoURL) {
-              avatar.src = user.photoURL;
-            }
-          }
-        });
-      </script>
     </div>
 
     <!-- Layout -->

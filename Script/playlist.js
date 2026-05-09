@@ -253,7 +253,6 @@ function renderPlaylist(id, playlist) {
 
 }
 
-let currentPlaylistSongs = [];
 document.getElementById("playlistSongSearchBtn")
 .onclick = async () => {
 
@@ -390,5 +389,12 @@ document.getElementById("savePlaylistBtn")
     .innerHTML = "";
 
     loadPlaylists();
+
+};
+
+document.getElementById("closePlaylistModalBtn")
+.onclick = () => {
+
+    playlistModal.classList.add("hidden");
 
 };
