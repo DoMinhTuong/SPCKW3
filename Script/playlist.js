@@ -2,7 +2,25 @@ const auth = firebase.auth();
 
 const db = firebase.firestore();
 
-/* Protect page */
+/* =========================
+   PLAYLIST MODAL
+========================= */
+
+let currentPlaylistSongs = [];
+
+const playlistModal =
+    document.getElementById("playlistModal");
+
+const createPlaylistBtn =
+    document.getElementById("createPlaylistBtn");
+
+/* Open modal */
+
+createPlaylistBtn.onclick = () => {
+
+    playlistModal.classList.remove("hidden");
+
+};
 
 auth.onAuthStateChanged(user => {
 
