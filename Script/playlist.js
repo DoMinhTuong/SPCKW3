@@ -1,7 +1,8 @@
 const auth = firebase.auth();
-const db = firebase.firestore();
-let currentPlaylistSongs = [];
 
+const db = firebase.firestore();
+
+/* Protect page */
 
 auth.onAuthStateChanged(user => {
 
@@ -10,11 +11,19 @@ auth.onAuthStateChanged(user => {
         return;
     }
 
-    const avatar = document.getElementById("userAvatar");
+    /* Navbar avatar */
+
+    const avatar =
+        document.getElementById("userAvatar");
 
     if (avatar) {
-        avatar.src = user.photoURL || "/Img/dpfp.jpg";
+        avatar.src =
+            user.photoURL || "/Img/dpfp.jpg";
     }
+
+    /* Load playlists */
+
+    loadPlaylists();
 
 });
 
