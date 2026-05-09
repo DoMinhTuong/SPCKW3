@@ -1,139 +1,76 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Change</title>
+<!-- Contact Content -->
+<div class="main-content">
+  <div class="contact-container">
+    <!-- Left -->
+    <div class="contact-info">
+      <p class="contact-tag">CONTACT ECHOWAVE</p>
 
-    <!-- FIXED CSS PATHS -->
-    <link rel="stylesheet" href="/Css/style.css" />
-    <link rel="stylesheet" href="/Css/mainmenu.css" />
-  </head>
+      <h1>Liên hệ & phản hồi</h1>
 
-  <body class="mainmenu-page">
-    <!-- Navbar -->
-    <div class="navbar">
-      <div class="nav-left">
-        <h1>Echowave</h1>
-      </div>
+      <p class="contact-description">
+        Nếu bạn gặp lỗi, muốn đề xuất tính năng mới hoặc muốn gửi phản
+        hồi về trải nghiệm sử dụng Echowave, hãy gửi thông tin cho chúng tôi.
+      </p>
 
-      <div class="nav-right">
-        <div class="inputgroup">
-          <input required="" type="text" class="input" />
-          <span class="highlight"></span>
-          <span class="bar"></span>
-          <label>Tìm kiếm nhạc</label>
+      <div class="info-box">
+        <div class="info-item">
+          <span>📧</span>
+          <div>
+            <h3>Email</h3>
+            <p>support@echowave.com</p>
+          </div>
         </div>
-        <button class="search-button">Search🔍</button>
-        <img
-          src="/Img/dpfp.jpg"
-          alt="User Avatar"
-          id="userAvatar"
-          onclick="location.href = 'profile.html'"
-        />
-      </div>
-      <script> /*chuyển về tran profile khi bấm vào avatar*/
-        firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-            const avatar = document.getElementById("userAvatar");
 
-            if (user.photoURL) {
-              avatar.src = user.photoURL;
-            }
-          }
-        });
-      </script>
-    </div>
+        <div class="info-item">
+          <span>📞</span>
+          <div>
+            <h3>Phone</h3>
+            <p>+84 912 345 678</p>
+          </div>
+        </div>
 
-    <!-- Layout -->
-    <div class="layout">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Tren (Top buttons) -->
-
-        <button id="homeBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-          </svg>
-          <span class="text">Trang chính</span>
-          <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-          </svg>
-        </button>
-        
-        <button id="playlistBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-          </svg>
-          <span class="text">Danh sách phát</span>
-          <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-          </svg>
-        </button>
-
-        <button id="profileBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-          </svg>
-          <span class="text">Profile</span>
-          <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-          </svg>
-        </button>
-
-        <button id="contactBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-          </svg>
-          <span class="text">Phản hồi</span>
-          <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-          </svg>
-        </button>
+        <div class="info-item">
+          <span>🌍</span>
+          <div>
+            <h3>Website</h3>
+            <p>www.echowave.com</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <!-- Right -->
+    <div class="contact-form-wrapper">
+      <form class="contact-form">
+        <div class="input-row">
+          <div class="input-box">
+            <label>Họ và tên</label>
+            <input type="text" placeholder="Nhập tên của bạn" />
+          </div>
 
-    <!-- FIXED SCRIPT PATHS -->
-    <script src="../Script/firebase-config.js"></script>
-    <script src="../Script/mainmenu.js"></script>
-
-    <!-- Footer (MOVED INSIDE BODY — IMPORTANT) -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-section">
-          <p style="color: aliceblue; font-size: 20px">Echowave</p>
-          <p style="font-size: 15px;">Khám phá, nghe và trải nghiệm những bài nhạc mới</p>
+          <div class="input-box">
+            <label>Email</label>
+            <input type="email" placeholder="example@gmail.com" />
+          </div>
         </div>
 
-        <div class="footer-section">
-          <p style="color: aliceblue; font-size: 20px">Điều hướng</p>
-          <ul>
-            <li><a href="index.html">Trang chính</a></li>
-            <li><a href="playlist.html">Danh sách phát</a></li>
-            <li><a href="profile.html">Trang cá nhân</a></li>
-          </ul>
+        <div class="input-box">
+          <label>Chủ đề</label>
+          <input type="text" placeholder="Ví dụ: Báo lỗi giao diện..." />
         </div>
 
-        <div class="footer-section">
-          <p style="color: aliceblue; font-size: 20px">Phản hồi</p>
-          <ul>
-            <li><a href="contact.html">Liên hệ</a></li>
-            <p style="font-size: 15px;">+84 912 345 678</p>
-          </ul>
+        <div class="input-box">
+          <label>Nội dung phản hồi</label>
+          <textarea
+            rows="7"
+            placeholder="Nhập nội dung phản hồi của bạn..."
+          ></textarea>
         </div>
-      </div>
 
-      <div class="footer-bottom">
-        <p>© 2026 Echowave. All rights reserved.</p>
-      </div>
-    </footer>
-  </body>
-</html>
+        <button type="submit" class="send-btn">
+          Gửi phản hồi
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
