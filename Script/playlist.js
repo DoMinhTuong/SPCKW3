@@ -16,9 +16,11 @@ const createPlaylistBtn =
 
 /* Open modal */
 
-createPlaylistBtn.onclick = () => {
+createPlaylistBtn.onclick = async () => {
 
     playlistModal.classList.remove("hidden");
+
+    await loadRecommendedSongs();
 
 };
 
@@ -62,96 +64,6 @@ document.getElementById("contactBtn").onclick = () => {
 };
 
 const API = "https://discoveryprovider.audius.co/v1";
-
-const playerAudio =
-    document.getElementById("playerAudio");
-
-const playerTitle =
-    document.getElementById("playerTitle");
-
-const playerArtist =
-    document.getElementById("playerArtist");
-
-const playerThumb =
-    document.getElementById("playerThumb");
-
-const playerToggle =
-    document.getElementById("playerToggle");
-
-const playerProgress =
-    document.getElementById("playerProgress");
-
-playerToggle.onclick = () => {
-    if (playerAudio.paused) {
-        playerAudio.play();
-    } else {
-        playerAudio.pause();
-    }
-};
-
-playerAudio.addEventListener("play", () => {
-    playerToggle.textContent = "❚❚";
-});
-
-playerAudio.addEventListener("pause", () => {
-    playerToggle.textContent = "▶";
-});
-
-playerAudio.addEventListener("timeupdate", () => {
-
-    if (!playerAudio.duration) return;
-
-    const percent =
-        (playerAudio.currentTime / playerAudio.duration) * 100;
-
-    playerProgress.style.width =
-        percent + "%";
-
-});
-
-document.getElementById("randomTracksBtn").onclick =
-async () => {
-
-    const tracks =
-        await getRandomTrendingSongs();
-
-    currentPlaylistSongs = tracks;
-
-    renderSearchResults(tracks);
-
-};
-
-function loadPlayer(track) {
-
-    playerTitle.textContent = track.title;
-
-    playerArtist.textContent = track.user.name;
-
-    playerThumb.src =
-        track.artwork?.["480x480"] || "/Img/blankmusic.png";
-
-    playerAudio.src =
-        `${API}/tracks/${track.id}/stream?app_name=Echowave`;
-
-    playerAudio.play();
-}
-
-async function getRandomTrendingSongs() {
-
-    const res = await fetch(
-        `${API}/tracks/trending?limit=20&app_name=Echowave`
-    );
-
-    const data = await res.json();
-
-    const tracks = data.data || [];
-
-    const shuffled =
-        tracks.sort(() => 0.5 - Math.random());
-
-    return shuffled.slice(0, 5);
-
-}
 
 async function searchSongs(query) {
 
@@ -398,3 +310,56 @@ document.getElementById("closePlaylistModalBtn")
     playlistModal.classList.add("hidden");
 
 };
+
+async function loadRecommendedSongs() {
+
+    const container =
+        document.getElementById("recommendedSongs");
+
+    container.innerHTML = "";
+
+    const res = await fetch(
+        `${API}/tracks/trending?limit=8&app_name=Echowave`
+    );
+
+    const data = await res.json();
+
+    const tracks = data.data || [];
+
+    tracks.forEach(track => {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "recommended-song-card";
+
+        card.innerHTML = `
+
+            <img
+              src="${track.artwork?.["480x480"] || "/Img/blankmusic.png"}"
+            >
+
+            <div class="recommended-song-title">
+                ${track.title}
+            </div>
+
+            <div class="recommended-song-artist">
+                ${track.user.name}
+            </div>
+
+        `;
+
+        card.onclick = () => {
+
+            currentPlaylistSongs.push(track);
+
+            renderSelectedSongs();
+
+        };
+
+        container.appendChild(card);
+
+    });
+
+}

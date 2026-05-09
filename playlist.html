@@ -200,69 +200,53 @@
       </div>
     </footer>
     <div id="playlistModal" class="playlist-modal hidden">
+      <div class="playlist-modal-content">
+        <h2 class="create-playlist-title">Create Playlist</h2>
 
-  <div class="playlist-modal-content">
+        <!-- Playlist Name -->
 
-    <h2 class="create-playlist-title">
-      Create Playlist
-    </h2>
+        <input
+          type="text"
+          id="playlistName"
+          class="playlist-name-input"
+          placeholder="Playlist Name"
+        />
 
-    <!-- Playlist Name -->
+        <!-- Search -->
 
-    <input
-      type="text"
-      id="playlistName"
-      class="playlist-name-input"
-      placeholder="Playlist Name"
-    >
+        <div class="playlist-search-box">
+          <input
+            type="text"
+            id="playlistSongSearch"
+            class="playlist-song-search-input"
+            placeholder="Search songs from Audius..."
+          />
 
-    <!-- Search -->
+          <button id="playlistSongSearchBtn">Search</button>
+        </div>
+        <h3 class="recommend-title">Recommended Songs</h3>
 
-    <div class="playlist-search-box">
+        <div id="recommendedSongs" class="recommended-songs-row"></div>
+        <!-- Search Results -->
 
-      <input
-        type="text"
-        id="playlistSongSearch"
-        class="playlist-song-search-input"
-        placeholder="Search songs from Audius..."
-      >
+        <div id="searchResults"></div>
 
-      <button id="playlistSongSearchBtn">
-        Search
-      </button>
+        <!-- Selected Songs -->
 
+        <div class="selected-songs-section">
+          <h3>Selected Songs</h3>
+
+          <div id="selectedSongs"></div>
+        </div>
+
+        <!-- Buttons -->
+
+        <div class="playlist-modal-buttons">
+          <button id="closePlaylistModalBtn">Cancel</button>
+
+          <button id="savePlaylistBtn">Save Playlist</button>
+        </div>
+      </div>
     </div>
-
-    <!-- Search Results -->
-
-    <div id="searchResults"></div>
-
-    <!-- Selected Songs -->
-
-    <div class="selected-songs-section">
-
-      <h3>Selected Songs</h3>
-
-      <div id="selectedSongs"></div>
-
-    </div>
-
-    <!-- Buttons -->
-
-    <div class="playlist-modal-buttons">
-
-      <button id="closePlaylistModalBtn">
-        Cancel
-      </button>
-
-      <button id="savePlaylistBtn">
-        Save Playlist
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
   </body>
 </html>
