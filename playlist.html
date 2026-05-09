@@ -211,26 +211,69 @@
       </div>
     </footer>
     <div id="playlistModal" class="playlist-modal hidden">
-      <div class="playlist-modal-content">
-        <input type="text" id="playlistName" placeholder="Playlist name" />
 
-        <button id="randomTracksBtn">Random Trending Songs</button>
+  <div class="playlist-modal-content">
 
-        <div class="playlist-search-box">
-          <input
-            type="text"
-            id="playlistSongSearch"
-            class="playlist-song-search-input"
-            placeholder="Search songs from Audius..."
-          />
+    <h2 class="create-playlist-title">
+      Create Playlist
+    </h2>
 
-          <button id="playlistSongSearchBtn">Search</button>
-        </div>
+    <!-- Playlist Name -->
 
-        <div id="searchResults"></div>
+    <input
+      type="text"
+      id="playlistName"
+      class="playlist-name-input"
+      placeholder="Playlist Name"
+    >
 
-        <button id="savePlaylistBtn">Save Playlist</button>
-      </div>
+    <!-- Search -->
+
+    <div class="playlist-search-box">
+
+      <input
+        type="text"
+        id="playlistSongSearch"
+        class="playlist-song-search-input"
+        placeholder="Search songs from Audius..."
+      >
+
+      <button id="playlistSongSearchBtn">
+        Search
+      </button>
+
     </div>
+
+    <!-- Search Results -->
+
+    <div id="searchResults"></div>
+
+    <!-- Selected Songs -->
+
+    <div class="selected-songs-section">
+
+      <h3>Selected Songs</h3>
+
+      <div id="selectedSongs"></div>
+
+    </div>
+
+    <!-- Buttons -->
+
+    <div class="playlist-modal-buttons">
+
+      <button id="closePlaylistModalBtn">
+        Cancel
+      </button>
+
+      <button id="savePlaylistBtn">
+        Save Playlist
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
   </body>
 </html>
