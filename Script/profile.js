@@ -29,15 +29,6 @@ document.getElementById("contactBtn").onclick = () => {
     window.location.href = "contact.html"
 };
 
-document.getElementById("logoutBtn").onclick = () => {
-
-    auth.signOut().then(() => {
-
-        window.location.href = "login.html";
-
-    });
-
-};
 firebase.auth().onAuthStateChanged((user) => {
   // Nếu chưa đăng nhập -> chuyển về login
   if (!user) {
