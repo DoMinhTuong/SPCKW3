@@ -32,7 +32,7 @@
           onclick="location.href = 'profile.html'"
         />
       </div>
-      <script> /*chuyển về tran profile khi bấm vào avatar*/
+      <script>
         firebase.auth().onAuthStateChanged((user) => {
           if (user) {
             const avatar = document.getElementById("userAvatar");
@@ -52,82 +52,134 @@
         <!-- Tren (Top buttons) -->
 
         <button id="homeBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Trang chính</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="searchBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Tìm kiếm</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="playlistBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Danh sách phát</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="profileBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Profile</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
 
         <button id="contactBtn" class="animated-button">
-          <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-2"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
           <span class="text">Phản hồi</span>
           <span class="circle"></span>
-          <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+          <svg
+            viewBox="0 0 24 24"
+            class="arr-1"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
           </svg>
         </button>
       </div>
       <div class="main-content">
+        <div class="playlist-header">
+          <h1>Your Playlists</h1>
 
-  <div class="playlist-header">
-
-    <h1>Your Playlists</h1>
-
-    <button id="createPlaylistBtn">
-      + Create Playlist
-    </button>
-
-  </div>
-
-  <div id="playlistContainer"></div>
-
-</div>
+          <button id="createPlaylistBtn">+ Create Playlist</button>
+        </div>
+        <div id="playlistContainer"></div>
+      </div>
     </div>
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
 
     <!-- FIXED SCRIPT PATHS -->
     <script src="/Script/firebase-config.js"></script>
@@ -138,7 +190,9 @@
       <div class="footer-container">
         <div class="footer-section">
           <p style="color: aliceblue; font-size: 20px">Echowave</p>
-          <p style="font-size: 15px;">Khám phá, nghe và trải nghiệm những bài nhạc mới</p>
+          <p style="font-size: 15px">
+            Khám phá, nghe và trải nghiệm những bài nhạc mới
+          </p>
         </div>
 
         <div class="footer-section">
@@ -154,7 +208,7 @@
           <p style="color: aliceblue; font-size: 20px">Phản hồi</p>
           <ul>
             <li><a href="contact.html">Liên hệ</a></li>
-            <p style="font-size: 15px;">+84 912 345 678</p>
+            <p style="font-size: 15px">+84 912 345 678</p>
           </ul>
         </div>
       </div>
@@ -164,41 +218,26 @@
       </div>
     </footer>
     <div id="playlistModal" class="playlist-modal hidden">
+      <div class="playlist-modal-content">
+        <input type="text" id="playlistName" placeholder="Playlist name" />
 
-  <div class="playlist-modal-content">
+        <button id="randomTracksBtn">Random Trending Songs</button>
 
-    <input
-      type="text"
-      id="playlistName"
-      placeholder="Playlist name"
-    >
+        <div class="playlist-search-box">
+          <input
+            type="text"
+            id="playlistSongSearch"
+            class="playlist-song-search-input"
+            placeholder="Search songs from Audius..."
+          />
 
-    <button id="randomTracksBtn">
-      Random Trending Songs
-    </button>
+          <button id="playlistSongSearchBtn">Search</button>
+        </div>
 
-    <div class="playlist-search">
+        <div id="searchResults"></div>
 
-      <input
-        type="text"
-        id="songSearchInput"
-        placeholder="Search songs..."
-      >
-
-      <button id="searchSongsBtn">
-        Search
-      </button>
-
+        <button id="savePlaylistBtn">Save Playlist</button>
+      </div>
     </div>
-
-    <div id="searchResults"></div>
-
-    <button id="savePlaylistBtn">
-      Save Playlist
-    </button>
-
-  </div>
-
-</div>
   </body>
 </html>

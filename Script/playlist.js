@@ -1,4 +1,7 @@
 const auth = firebase.auth();
+const db = firebase.firestore();
+let currentPlaylistSongs = [];
+
 
 auth.onAuthStateChanged(user => {
 
@@ -82,6 +85,18 @@ playerAudio.addEventListener("timeupdate", () => {
         percent + "%";
 
 });
+
+document.getElementById("randomTracksBtn").onclick =
+async () => {
+
+    const tracks =
+        await getRandomTrendingSongs();
+
+    currentPlaylistSongs = tracks;
+
+    renderSearchResults(tracks);
+
+};
 
 function loadPlayer(track) {
 
