@@ -1,3 +1,5 @@
+console.log("playlist.js loaded");
+
 const auth = firebase.auth();
 
 const db = firebase.firestore();
