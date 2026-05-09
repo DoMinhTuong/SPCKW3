@@ -106,15 +106,32 @@
           </svg>
         </button>
       </div>
+      <div class="main-content">
+
+  <div class="playlist-header">
+
+    <h1>Your Playlists</h1>
+
+    <button id="createPlaylistBtn">
+      + Create Playlist
+    </button>
+
+  </div>
+
+  <div id="playlistContainer"></div>
+
+</div>
     </div>
 
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
 
     <!-- FIXED SCRIPT PATHS -->
-    <script src="../Script/firebase-config.js"></script>
-    <script src="../Script/mainmenu.js"></script>
+    <script src="/Script/firebase-config.js"></script>
+    <script src="/Script/playlist.js"></script>
 
     <!-- Footer (MOVED INSIDE BODY — IMPORTANT) -->
     <footer class="footer">
@@ -146,5 +163,42 @@
         <p>© 2026 Echowave. All rights reserved.</p>
       </div>
     </footer>
+    <div id="playlistModal" class="playlist-modal hidden">
+
+  <div class="playlist-modal-content">
+
+    <input
+      type="text"
+      id="playlistName"
+      placeholder="Playlist name"
+    >
+
+    <button id="randomTracksBtn">
+      Random Trending Songs
+    </button>
+
+    <div class="playlist-search">
+
+      <input
+        type="text"
+        id="songSearchInput"
+        placeholder="Search songs..."
+      >
+
+      <button id="searchSongsBtn">
+        Search
+      </button>
+
+    </div>
+
+    <div id="searchResults"></div>
+
+    <button id="savePlaylistBtn">
+      Save Playlist
+    </button>
+
+  </div>
+
+</div>
   </body>
 </html>

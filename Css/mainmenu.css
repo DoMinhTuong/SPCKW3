@@ -577,3 +577,130 @@ body.mainmenu-page {
   font-size: 16px;
   word-break: break-word;
 }
+
+/* =========================
+   PLAYLIST PAGE
+========================= */
+
+.playlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.playlist-header h1 {
+  font-size: 36px;
+}
+
+#createPlaylistBtn {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#playlistContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Playlist Card */
+
+.playlist-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.playlist-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.playlist-title-input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  outline: none;
+}
+
+.playlist-song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Song */
+
+.playlist-song {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #232833;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.playlist-song img {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.playlist-song-info {
+  flex: 1;
+}
+
+.remove-song-btn {
+  background: crimson;
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Modal */
+
+.playlist-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
+}
+
+.playlist-modal-content {
+  width: 700px;
+  max-width: 90%;
+  background: #171b22;
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.playlist-modal-content input {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 12px;
+  background: #222733;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: white;
+}
