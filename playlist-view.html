@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>Playlist - Echowave</title>
+
+  <link rel="stylesheet" href="/Css/style.css" />
+  <link rel="stylesheet" href="/Css/mainmenu.css" />
+</head>
+
+<body>
+
+  <div class="playlist-view-page">
+
+    <div class="playlist-view-header">
+
+      <img
+        id="playlistCover"
+        src="/Img/blankmusic.png"
+      >
+
+      <div>
+
+        <h1 id="playlistTitle">
+          Loading...
+        </h1>
+
+        <p id="playlistSongCount">
+          0 songs
+        </p>
+
+      </div>
+
+    </div>
+
+    <div id="playlistSongs">
+    </div>
+
+  </div>
+
+  <!-- Firebase -->
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+  <script src="/Script/firebase-config.js"></script>
+
+  <script src="/Script/playlist-view.js"></script>
+
+</body>
+</html>

@@ -1197,3 +1197,45 @@ body.mainmenu-page {
 
   z-index: 99999;
 }
+
+.playlist-view-page {
+    padding: 40px;
+}
+
+.playlist-view-header {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+
+    margin-bottom: 40px;
+}
+
+.playlist-view-header img {
+    width: 220px;
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+}
+
+.playlist-song-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 16px;
+
+    background: #111;
+
+    border-radius: 14px;
+
+    margin-bottom: 14px;
+}
+
+.playlist-song-card img {
+    width: 70px;
+    height: 70px;
+
+    border-radius: 10px;
+}
