@@ -1170,7 +1170,7 @@ body.mainmenu-page {
 }
 
 .hidden {
-  display: none;
+    display: none !important;
 }
 
 .playlist-modal {

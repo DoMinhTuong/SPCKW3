@@ -351,6 +351,29 @@ function renderSelectedSongs() {
 
 }
 
+function resetPlaylistModal() {
+
+    playlistModal.classList.add("hidden");
+
+    currentPlaylistSongs = [];
+
+    document.getElementById("playlistName").value = "";
+
+    document.getElementById("playlistSongSearch").value = "";
+
+    document.getElementById("searchResults").innerHTML = "";
+
+    document.getElementById("selectedSongs").innerHTML = "";
+
+}
+
+document.getElementById("closePlaylistModalBtn")
+    .onclick = () => {
+
+        resetPlaylistModal();
+
+    };
+
 document.getElementById("savePlaylistBtn")
     .onclick = async () => {
 
@@ -372,34 +395,7 @@ document.getElementById("savePlaylistBtn")
             name,
             currentPlaylistSongs
         );
-
-        document.getElementById("closePlaylistModalBtn")
-            .onclick = () => {
-
-                playlistModal.classList.add("hidden");
-
-                currentPlaylistSongs = [];
-
-                document.getElementById("playlistName").value = "";
-
-                document.getElementById("playlistSongSearch").value = "";
-
-                document.getElementById("searchResults").innerHTML = "";
-
-                document.getElementById("selectedSongs").innerHTML = "";
-
-            };
-        currentPlaylistSongs = [];
-
-        document.getElementById("playlistName").value = "";
-
-        document.getElementById("playlistSongSearch").value = "";
-
-        document.getElementById("searchResults").innerHTML = "";
-
-        document.getElementById("selectedSongs").innerHTML = "";
-
-        currentPlaylistSongs = [];
+        resetPlaylistModal();
 
         document.getElementById("playlistContainer")
             .innerHTML = "";
@@ -486,3 +482,11 @@ console.log(createPlaylistBtn);
 console.log(playlistModal);
 console.log(document.getElementById("savePlaylistBtn"));
 console.log(document.getElementById("closePlaylistModalBtn"));
+
+playlistModal.onclick = (e) => {
+
+    if (e.target === playlistModal) {
+        resetPlaylistModal();
+    }
+
+};
