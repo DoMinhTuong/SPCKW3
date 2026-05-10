@@ -172,7 +172,49 @@ function renderPlaylist(id, playlist) {
 
         </div>
 
+        <button class="open-playlist-btn">
+            Open
+        </button>
+
+        <button class="delete-playlist-btn">
+            Delete
+        </button>
+
     `;
+
+    /* OPEN PLAYLIST */
+
+    card.querySelector(".open-playlist-btn")
+        .onclick = () => {
+
+            localStorage.setItem(
+                "selectedPlaylistId",
+                id
+            );
+
+            window.location.href =
+                "playlist-view.html";
+
+        };
+
+    /* DELETE PLAYLIST */
+
+    card.querySelector(".delete-playlist-btn")
+        .onclick = async () => {
+
+            const user =
+                firebase.auth().currentUser;
+
+            await db
+                .collection("playlists")
+                .doc(user.uid)
+                .collection("userPlaylists")
+                .doc(id)
+                .delete();
+
+            loadPlaylists();
+
+        };
 
     container.appendChild(card);
 
@@ -321,13 +363,32 @@ document.getElementById("savePlaylistBtn")
             return;
         }
 
+        if (!currentPlaylistSongs.length) {
+            alert("Add at least one song");
+            return;
+        }
+
         await savePlaylist(
             name,
             currentPlaylistSongs
         );
 
-        playlistModal.classList.add("hidden");
+        document.getElementById("closePlaylistModalBtn")
+            .onclick = () => {
 
+                playlistModal.classList.add("hidden");
+
+                currentPlaylistSongs = [];
+
+                document.getElementById("playlistName").value = "";
+
+                document.getElementById("playlistSongSearch").value = "";
+
+                document.getElementById("searchResults").innerHTML = "";
+
+                document.getElementById("selectedSongs").innerHTML = "";
+
+            };
         currentPlaylistSongs = [];
 
         document.getElementById("playlistName").value = "";
@@ -414,48 +475,10 @@ async function loadRecommendedSongs() {
 
         });
 
-    } catch(err) {
+    } catch (err) {
 
         console.error(err);
 
     }
 
 }
-
-if (!currentPlaylistSongs.length) {
-
-    alert("Add at least one song");
-
-    return;
-
-}
-
-card.querySelector(".delete-playlist-btn")
-.onclick = async () => {
-
-    const user =
-        firebase.auth().currentUser;
-
-    await db
-        .collection("playlists")
-        .doc(user.uid)
-        .collection("userPlaylists")
-        .doc(id)
-        .delete();
-
-    loadPlaylists();
-
-};
-
-card.querySelector(".open-playlist-btn")
-.onclick = () => {
-
-    localStorage.setItem(
-        "selectedPlaylistId",
-        id
-    );
-
-    window.location.href =
-        "playlist-view.html";
-
-};
