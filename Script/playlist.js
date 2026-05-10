@@ -16,38 +16,9 @@ const playlistModal =
 const createPlaylistBtn =
     document.getElementById("createPlaylistBtn");
 
-/* Open modal */
-
-createPlaylistBtn.onclick = async () => {
-
-    playlistModal.classList.remove("hidden");
-
-    await loadRecommendedSongs();
-
-};
-
-auth.onAuthStateChanged(user => {
-
-    if (!user) {
-        window.location.href = "login.html";
-        return;
-    }
-
-    /* Navbar avatar */
-
-    const avatar =
-        document.getElementById("userAvatar");
-
-    if (avatar) {
-        avatar.src =
-            user.photoURL || "/Img/dpfp.jpg";
-    }
-
-    /* Load playlists */
-
-    loadPlaylists();
-
-});
+/* =========================
+   PLAYER
+========================= */
 
 const playerAudio =
     document.getElementById("playerAudio");
@@ -68,23 +39,94 @@ let currentQueue = [];
 
 let currentQueueIndex = 0;
 
-document.getElementById("homeBtn").onclick = () => {
-    window.location.href = "index.html";
+/* =========================
+   OPEN MODAL
+========================= */
+
+createPlaylistBtn.onclick = async () => {
+
+    playlistModal.classList.remove("hidden");
+
+    await loadRecommendedSongs();
+
 };
 
-document.getElementById("playlistBtn").onclick = () => {
-    window.location.href = "playlist.html";
-};
+/* =========================
+   AUTH
+========================= */
 
-document.getElementById("profileBtn").onclick = () => {
-    window.location.href = "profile.html";
-};
+auth.onAuthStateChanged(user => {
 
-document.getElementById("contactBtn").onclick = () => {
-    window.location.href = "contact.html";
-};
+    if (!user) {
 
-const API = "https://discoveryprovider.audius.co/v1";
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
+
+    const avatar =
+        document.getElementById("userAvatar");
+
+    if (avatar) {
+
+        avatar.src =
+            user.photoURL ||
+            "/Img/dpfp.jpg";
+
+    }
+
+    loadPlaylists();
+
+});
+
+/* =========================
+   NAVIGATION
+========================= */
+
+document.getElementById("homeBtn")
+    .onclick = () => {
+
+        window.location.href =
+            "index.html";
+
+    };
+
+document.getElementById("playlistBtn")
+    .onclick = () => {
+
+        window.location.href =
+            "playlist.html";
+
+    };
+
+document.getElementById("profileBtn")
+    .onclick = () => {
+
+        window.location.href =
+            "profile.html";
+
+    };
+
+document.getElementById("contactBtn")
+    .onclick = () => {
+
+        window.location.href =
+            "contact.html";
+
+    };
+
+/* =========================
+   API
+========================= */
+
+const API =
+    "https://discoveryprovider.audius.co/v1";
+
+/* =========================
+   SEARCH SONGS
+========================= */
 
 async function searchSongs(query) {
 
@@ -98,6 +140,10 @@ async function searchSongs(query) {
 
 }
 
+/* =========================
+   SAVE PLAYLIST
+========================= */
+
 async function savePlaylist(name, songs) {
 
     const user =
@@ -105,13 +151,22 @@ async function savePlaylist(name, songs) {
 
     if (!user) return;
 
-    /* Only save serializable fields */
-    const serialized = songs.map(s => ({
-        id: s.id,
-        title: s.title,
-        artist: s.user?.name || "Unknown",
-        artwork: s.artwork?.["480x480"] || ""
-    }));
+    const serialized =
+        songs.map(s => ({
+
+            id: s.id,
+
+            title: s.title,
+
+            artist:
+                s.user?.name ||
+                "Unknown",
+
+            artwork:
+                s.artwork?.["480x480"] ||
+                ""
+
+        }));
 
     await db
         .collection("playlists")
@@ -120,12 +175,18 @@ async function savePlaylist(name, songs) {
         .add({
 
             name,
+
             songs: serialized,
+
             createdAt: Date.now()
 
         });
 
 }
+
+/* =========================
+   LOAD PLAYLISTS
+========================= */
 
 async function loadPlaylists() {
 
@@ -134,8 +195,12 @@ async function loadPlaylists() {
 
     if (!user) return;
 
-    document.getElementById("playlistContainer")
-        .innerHTML = "";
+    const container =
+        document.getElementById(
+            "playlistContainer"
+        );
+
+    container.innerHTML = "";
 
     const snapshot =
         await db
@@ -146,13 +211,21 @@ async function loadPlaylists() {
 
     snapshot.forEach(doc => {
 
-        const playlist = doc.data();
+        const playlist =
+            doc.data();
 
-        renderPlaylist(doc.id, playlist);
+        renderPlaylist(
+            doc.id,
+            playlist
+        );
 
     });
 
 }
+
+/* =========================
+   PLAY SONG
+========================= */
 
 async function playSong(track) {
 
@@ -162,7 +235,8 @@ async function playSong(track) {
             `${API}/tracks/${track.id}/stream?app_name=Echowave`
         );
 
-        const data = await res.json();
+        const data =
+            await res.json();
 
         playerAudio.src =
             data.url;
@@ -181,7 +255,8 @@ async function playSong(track) {
 
         await playerAudio.play();
 
-        playerToggle.textContent = "⏸";
+        playerToggle.textContent =
+            "⏸";
 
     } catch (err) {
 
@@ -191,29 +266,33 @@ async function playSong(track) {
 
 }
 
-function renderPlaylist(id, playlist) {
+/* =========================
+   PLAYER CONTROLS
+========================= */
 
-    const container =
-        document.getElementById("playlistContainer");
+playerToggle.onclick =
+    async () => {
 
-    const card =
-        document.createElement("div");
-    card.querySelector(".play-playlist-btn")
-        .onclick = async () => {
+        if (playerAudio.paused) {
 
-            if (!playlist.songs.length) return;
+            await playerAudio.play();
 
-            currentQueue =
-                playlist.songs;
+            playerToggle.textContent =
+                "⏸";
 
-            currentQueueIndex = 0;
+        } else {
 
-            await playSong(
-                currentQueue[currentQueueIndex]
-            );
+            playerAudio.pause();
 
-        };
-    playerAudio.onended = async () => {
+            playerToggle.textContent =
+                "▶";
+
+        }
+
+    };
+
+playerAudio.onended =
+    async () => {
 
         currentQueueIndex++;
 
@@ -227,27 +306,50 @@ function renderPlaylist(id, playlist) {
         }
 
         await playSong(
-            currentQueue[currentQueueIndex]
+            currentQueue[
+                currentQueueIndex
+            ]
         );
 
     };
-    playerToggle.onclick = async () => {
 
-        if (playerAudio.paused) {
+playerAudio.ontimeupdate =
+    () => {
 
-            await playerAudio.play();
+        if (
+            !playerAudio.duration
+        ) return;
 
-            playerToggle.textContent = "⏸";
+        const progress =
+            (
+                playerAudio.currentTime /
+                playerAudio.duration
+            ) * 100;
 
-        } else {
-
-            playerAudio.pause();
-
-            playerToggle.textContent = "▶";
-
-        }
+        document.getElementById(
+            "playerProgress"
+        ).style.width =
+            `${progress}%`;
 
     };
+
+/* =========================
+   RENDER PLAYLIST
+========================= */
+
+function renderPlaylist(
+    id,
+    playlist
+) {
+
+    const container =
+        document.getElementById(
+            "playlistContainer"
+        );
+
+    const card =
+        document.createElement("div");
+
     card.className =
         "playlist-card";
 
@@ -257,109 +359,159 @@ function renderPlaylist(id, playlist) {
             .map(song => song.title)
             .join(", ");
 
-    if (playlist.songs.length > 3) {
+    if (
+        playlist.songs.length > 3
+    ) {
+
         description += " ...";
+
     }
 
     card.innerHTML = `
 
-    <img src="/Img/blankmusic.png">
+        <img src="/Img/blankmusic.png">
 
-    <div class="playlist-card-info">
+        <div class="playlist-card-info">
 
-        <div class="playlist-card-title">
-            ${playlist.name}
+            <div class="playlist-card-title">
+                ${playlist.name}
+            </div>
+
+            <div class="playlist-card-description">
+                ${description}
+            </div>
+
         </div>
 
-        <div class="playlist-card-description">
-            ${description}
+        <div class="playlist-card-buttons">
+
+            <button class="play-playlist-btn">
+                Play
+            </button>
+
+            <button class="open-playlist-btn">
+                Open
+            </button>
+
+            <button class="delete-playlist-btn">
+                Delete
+            </button>
+
         </div>
 
-    </div>
+    `;
 
-    <div class="playlist-card-buttons">
+    /* PLAY */
 
-        <button class="play-playlist-btn">
-            Play
-        </button>
+    card.querySelector(
+        ".play-playlist-btn"
+    ).onclick = async () => {
 
-        <button class="open-playlist-btn">
-            Open
-        </button>
+        if (
+            !playlist.songs.length
+        ) return;
 
-        <button class="delete-playlist-btn">
-            Delete
-        </button>
+        currentQueue =
+            playlist.songs;
 
-    </div>
+        currentQueueIndex = 0;
 
-`;
+        await playSong(
+            currentQueue[
+                currentQueueIndex
+            ]
+        );
 
-    /* OPEN PLAYLIST */
+    };
 
-    card.querySelector(".open-playlist-btn")
-        .onclick = () => {
+    /* OPEN */
 
-            localStorage.setItem(
-                "selectedPlaylistId",
-                id
-            );
+    card.querySelector(
+        ".open-playlist-btn"
+    ).onclick = () => {
 
-            window.location.href =
-                "playlist-view.html";
+        localStorage.setItem(
+            "selectedPlaylistId",
+            id
+        );
 
-        };
+        window.location.href =
+            "playlist-view.html";
 
-    /* DELETE PLAYLIST */
+    };
 
-    card.querySelector(".delete-playlist-btn")
-        .onclick = async () => {
+    /* DELETE */
 
-            const user =
-                firebase.auth().currentUser;
+    card.querySelector(
+        ".delete-playlist-btn"
+    ).onclick = async () => {
 
-            await db
-                .collection("playlists")
-                .doc(user.uid)
-                .collection("userPlaylists")
-                .doc(id)
-                .delete();
+        const user =
+            firebase.auth()
+                .currentUser;
 
-            loadPlaylists();
+        await db
+            .collection("playlists")
+            .doc(user.uid)
+            .collection(
+                "userPlaylists"
+            )
+            .doc(id)
+            .delete();
 
-        };
+        loadPlaylists();
+
+    };
 
     container.appendChild(card);
 
 }
 
-document.getElementById("playlistSongSearchBtn")
-    .onclick = async () => {
+/* =========================
+   SEARCH BUTTON
+========================= */
 
-        const query =
-            document.getElementById("playlistSongSearch")
-                .value;
+document.getElementById(
+    "playlistSongSearchBtn"
+).onclick = async () => {
 
-        if (!query) return;
+    const query =
+        document.getElementById(
+            "playlistSongSearch"
+        ).value;
 
-        const tracks =
-            await searchSongs(query);
+    if (!query) return;
 
-        renderSearchResults(tracks);
+    const tracks =
+        await searchSongs(query);
 
-    };
+    renderSearchResults(
+        tracks
+    );
 
-function renderSearchResults(tracks) {
+};
+
+/* =========================
+   RENDER SEARCH RESULTS
+========================= */
+
+function renderSearchResults(
+    tracks
+) {
 
     const container =
-        document.getElementById("searchResults");
+        document.getElementById(
+            "searchResults"
+        );
 
     container.innerHTML = "";
 
     tracks.forEach(track => {
 
         const card =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
         card.className =
             "search-song-card";
@@ -388,21 +540,26 @@ function renderSearchResults(tracks) {
 
         `;
 
-        card.querySelector(".add-song-btn")
-            .onclick = () => {
+        card.querySelector(
+            ".add-song-btn"
+        ).onclick = () => {
 
-                const exists =
-                    currentPlaylistSongs.some(
-                        song => song.id === track.id
+            const exists =
+                currentPlaylistSongs
+                    .some(
+                        song =>
+                            song.id ===
+                            track.id
                     );
 
-                if (exists) return;
+            if (exists) return;
 
-                currentPlaylistSongs.push(track);
+            currentPlaylistSongs
+                .push(track);
 
-                renderSelectedSongs();
+            renderSelectedSongs();
 
-            };
+        };
 
         container.appendChild(card);
 
@@ -410,22 +567,31 @@ function renderSearchResults(tracks) {
 
 }
 
+/* =========================
+   RENDER SELECTED SONGS
+========================= */
+
 function renderSelectedSongs() {
 
     const container =
-        document.getElementById("selectedSongs");
+        document.getElementById(
+            "selectedSongs"
+        );
 
     container.innerHTML = "";
 
-    currentPlaylistSongs.forEach((track, index) => {
+    currentPlaylistSongs
+        .forEach((track, index) => {
 
-        const div =
-            document.createElement("div");
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-        div.className =
-            "search-song-card";
+            div.className =
+                "search-song-card";
 
-        div.innerHTML = `
+            div.innerHTML = `
 
             <img
               src="${track.artwork?.["480x480"] || "/Img/blankmusic.png"}"
@@ -449,102 +615,143 @@ function renderSelectedSongs() {
 
         `;
 
-        div.querySelector(".remove-song-btn")
-            .onclick = () => {
+            div.querySelector(
+                ".remove-song-btn"
+            ).onclick = () => {
 
-                currentPlaylistSongs.splice(index, 1);
+                currentPlaylistSongs
+                    .splice(index, 1);
 
                 renderSelectedSongs();
 
             };
 
-        container.appendChild(div);
+            container.appendChild(div);
 
-    });
+        });
 
 }
+
+/* =========================
+   RESET MODAL
+========================= */
 
 function resetPlaylistModal() {
 
-    playlistModal.classList.add("hidden");
+    playlistModal.classList.add(
+        "hidden"
+    );
 
     currentPlaylistSongs = [];
 
-    document.getElementById("playlistName").value = "";
+    document.getElementById(
+        "playlistName"
+    ).value = "";
 
-    document.getElementById("playlistSongSearch").value = "";
+    document.getElementById(
+        "playlistSongSearch"
+    ).value = "";
 
-    document.getElementById("searchResults").innerHTML = "";
+    document.getElementById(
+        "searchResults"
+    ).innerHTML = "";
 
-    document.getElementById("selectedSongs").innerHTML = "";
+    document.getElementById(
+        "selectedSongs"
+    ).innerHTML = "";
 
 }
 
-document.getElementById("closePlaylistModalBtn")
-    .onclick = () => {
+/* =========================
+   CLOSE MODAL
+========================= */
 
-        resetPlaylistModal();
+document.getElementById(
+    "closePlaylistModalBtn"
+).onclick = () => {
 
-    };
+    resetPlaylistModal();
 
-document.getElementById("savePlaylistBtn")
-    .onclick = async () => {
+};
 
-        const name =
-            document.getElementById("playlistName")
-                .value;
+/* =========================
+   SAVE PLAYLIST BUTTON
+========================= */
 
-        if (!name) {
-            alert("Enter playlist name");
-            return;
-        }
+document.getElementById(
+    "savePlaylistBtn"
+).onclick = async () => {
 
-        if (!currentPlaylistSongs.length) {
-            alert("Add at least one song");
-            return;
-        }
+    const name =
+        document.getElementById(
+            "playlistName"
+        ).value;
 
-        await savePlaylist(
-            name,
-            currentPlaylistSongs
+    if (!name) {
+
+        alert(
+            "Enter playlist name"
         );
-        resetPlaylistModal();
 
-        document.getElementById("playlistContainer")
-            .innerHTML = "";
+        return;
 
-        loadPlaylists();
+    }
 
-    };
+    if (
+        !currentPlaylistSongs.length
+    ) {
 
-document.getElementById("closePlaylistModalBtn")
-    .onclick = () => {
+        alert(
+            "Add at least one song"
+        );
 
-        playlistModal.classList.add("hidden");
+        return;
 
-    };
+    }
+
+    await savePlaylist(
+        name,
+        currentPlaylistSongs
+    );
+
+    resetPlaylistModal();
+
+    loadPlaylists();
+
+};
+
+/* =========================
+   RECOMMENDED SONGS
+========================= */
 
 async function loadRecommendedSongs() {
 
     try {
 
         const container =
-            document.getElementById("recommendedSongs");
+            document.getElementById(
+                "recommendedSongs"
+            );
 
         container.innerHTML = "";
 
-        const res = await fetch(
-            `${API}/tracks/trending?limit=8&app_name=Echowave`
-        );
+        const res =
+            await fetch(
+                `${API}/tracks/trending?limit=8&app_name=Echowave`
+            );
 
-        const data = await res.json();
+        const data =
+            await res.json();
 
-        const tracks = data.data || [];
+        const tracks =
+            data.data || [];
 
         tracks.forEach(track => {
 
             const card =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
             card.className =
                 "recommended-song-card";
@@ -568,19 +775,25 @@ async function loadRecommendedSongs() {
             card.onclick = () => {
 
                 const exists =
-                    currentPlaylistSongs.some(
-                        song => song.id === track.id
-                    );
+                    currentPlaylistSongs
+                        .some(
+                            song =>
+                                song.id ===
+                                track.id
+                        );
 
                 if (exists) return;
 
-                currentPlaylistSongs.push(track);
+                currentPlaylistSongs
+                    .push(track);
 
                 renderSelectedSongs();
 
             };
 
-            container.appendChild(card);
+            container.appendChild(
+                card
+            );
 
         });
 
@@ -591,28 +804,45 @@ async function loadRecommendedSongs() {
     }
 
 }
-console.log(createPlaylistBtn);
-console.log(playlistModal);
-console.log(document.getElementById("savePlaylistBtn"));
-console.log(document.getElementById("closePlaylistModalBtn"));
 
-playlistModal.onclick = (e) => {
+/* =========================
+   CLICK OUTSIDE MODAL
+========================= */
 
-    if (e.target === playlistModal) {
-        resetPlaylistModal();
-    }
+playlistModal.onclick =
+    (e) => {
 
-};
+        if (
+            e.target ===
+            playlistModal
+        ) {
 
-playerAudio.ontimeupdate = () => {
+            resetPlaylistModal();
 
-    const progress =
-        (playerAudio.currentTime /
-         playerAudio.duration) * 100;
+        }
 
+    };
+
+/* =========================
+   DEBUG
+========================= */
+
+console.log(
+    createPlaylistBtn
+);
+
+console.log(
+    playlistModal
+);
+
+console.log(
     document.getElementById(
-        "playerProgress"
-    ).style.width =
-        `${progress}%`;
+        "savePlaylistBtn"
+    )
+);
 
-};
+console.log(
+    document.getElementById(
+        "closePlaylistModalBtn"
+    )
+);
