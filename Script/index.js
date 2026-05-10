@@ -7,7 +7,7 @@ auth.onAuthStateChanged(user => {
         return;
     }
 
-    console.log("PHOTO URL:", user.photoURL); // ✅ an toàn
+    console.log("PHOTO URL:", user.photoURL);
 
     const avatar = document.getElementById("userAvatar");
 
@@ -124,7 +124,7 @@ async function createSection(title, query) {
     try {
 
         const res = await fetch(
-            `${API}/tracks/search?query=${query}&limit=10&app_name=Echowave`
+            `${API}/tracks/search?query=${query}&limit=5&app_name=Echowave`
         );
 
         const data = await res.json();
