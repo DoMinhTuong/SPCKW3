@@ -49,6 +49,25 @@ auth.onAuthStateChanged(user => {
 
 });
 
+const playerAudio =
+    document.getElementById("playerAudio");
+
+const playerThumb =
+    document.getElementById("playerThumb");
+
+const playerTitle =
+    document.getElementById("playerTitle");
+
+const playerArtist =
+    document.getElementById("playerArtist");
+
+const playerToggle =
+    document.getElementById("playerToggle");
+
+let currentQueue = [];
+
+let currentQueueIndex = 0;
+
 document.getElementById("homeBtn").onclick = () => {
     window.location.href = "index.html";
 };
@@ -135,6 +154,43 @@ async function loadPlaylists() {
 
 }
 
+async function playSong(track) {
+
+    try {
+
+        const res = await fetch(
+            `${API}/tracks/${track.id}/stream?app_name=Echowave`
+        );
+
+        const data = await res.json();
+
+        playerAudio.src =
+            data.url;
+
+        playerThumb.src =
+            track.artwork ||
+            "/Img/blankmusic.png";
+
+        playerTitle.textContent =
+            track.title;
+
+        playerArtist.textContent =
+            track.artist ||
+            track.user?.name ||
+            "Unknown";
+
+        await playerAudio.play();
+
+        playerToggle.textContent = "⏸";
+
+    } catch (err) {
+
+        console.error(err);
+
+    }
+
+}
+
 function renderPlaylist(id, playlist) {
 
     const container =
@@ -142,7 +198,56 @@ function renderPlaylist(id, playlist) {
 
     const card =
         document.createElement("div");
+    card.querySelector(".play-playlist-btn")
+        .onclick = async () => {
 
+            if (!playlist.songs.length) return;
+
+            currentQueue =
+                playlist.songs;
+
+            currentQueueIndex = 0;
+
+            await playSong(
+                currentQueue[currentQueueIndex]
+            );
+
+        };
+    playerAudio.onended = async () => {
+
+        currentQueueIndex++;
+
+        if (
+            currentQueueIndex >=
+            currentQueue.length
+        ) {
+
+            currentQueueIndex = 0;
+
+        }
+
+        await playSong(
+            currentQueue[currentQueueIndex]
+        );
+
+    };
+    playerToggle.onclick = async () => {
+
+        if (playerAudio.paused) {
+
+            await playerAudio.play();
+
+            playerToggle.textContent = "⏸";
+
+        } else {
+
+            playerAudio.pause();
+
+            playerToggle.textContent = "▶";
+
+        }
+
+    };
     card.className =
         "playlist-card";
 
@@ -158,19 +263,25 @@ function renderPlaylist(id, playlist) {
 
     card.innerHTML = `
 
-        <img src="/Img/blankmusic.png">
+    <img src="/Img/blankmusic.png">
 
-        <div class="playlist-card-info">
+    <div class="playlist-card-info">
 
-            <div class="playlist-card-title">
-                ${playlist.name}
-            </div>
-
-            <div class="playlist-card-description">
-                ${description}
-            </div>
-
+        <div class="playlist-card-title">
+            ${playlist.name}
         </div>
+
+        <div class="playlist-card-description">
+            ${description}
+        </div>
+
+    </div>
+
+    <div class="playlist-card-buttons">
+
+        <button class="play-playlist-btn">
+            Play
+        </button>
 
         <button class="open-playlist-btn">
             Open
@@ -180,7 +291,9 @@ function renderPlaylist(id, playlist) {
             Delete
         </button>
 
-    `;
+    </div>
+
+`;
 
     /* OPEN PLAYLIST */
 
@@ -488,5 +601,18 @@ playlistModal.onclick = (e) => {
     if (e.target === playlistModal) {
         resetPlaylistModal();
     }
+
+};
+
+playerAudio.ontimeupdate = () => {
+
+    const progress =
+        (playerAudio.currentTime /
+         playerAudio.duration) * 100;
+
+    document.getElementById(
+        "playerProgress"
+    ).style.width =
+        `${progress}%`;
 
 };
