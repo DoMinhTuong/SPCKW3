@@ -279,11 +279,13 @@ body.mainmenu-page {
 /* =========================
    LAYOUT FIX
 ========================= */
-
 .layout {
   display: flex;
+  flex-direction: row;
+
   width: 100%;
-  flex: 1;
+
+  align-items: stretch;
 }
 /* =========================
    MAIN CONTENT
@@ -291,8 +293,9 @@ body.mainmenu-page {
 
 .main-content {
   flex: 1;
-  padding: 20px;
   min-width: 0;
+
+  padding: 20px;
 }
 
 /* =========================
