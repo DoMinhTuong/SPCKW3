@@ -283,10 +283,8 @@ body.mainmenu-page {
 .layout {
   display: flex;
   width: 100%;
-  min-height: 100vh;
-  align-items: stretch;
+  flex: 1;
 }
-
 /* =========================
    MAIN CONTENT
 ========================= */
@@ -364,16 +362,8 @@ body.mainmenu-page {
 
   color: white;
 
-  position: sticky;
-  top: 64px;
-
-  height: calc(100vh - 64px);
-
-  overflow-y: auto;
-
   flex-shrink: 0;
 }
-
 /* Player Image */
 .player-thumb {
   width: 180px;
@@ -1163,5 +1153,15 @@ body.mainmenu-page {
 
   .footer-container {
     padding: 0 20px 30px;
+  }
+}
+
+body.mainmenu-page {
+  overflow-y: auto;
+}
+
+@media (max-width: 1100px) {
+  .right-player {
+    display: none;
   }
 }
