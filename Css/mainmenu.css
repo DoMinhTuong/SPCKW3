@@ -284,7 +284,7 @@ body.mainmenu-page {
   display: flex;
   width: 100%;
   min-height: 100vh;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 /* =========================
@@ -294,6 +294,7 @@ body.mainmenu-page {
 .main-content {
   flex: 1;
   padding: 20px;
+  min-width: 0;
 }
 
 /* =========================
@@ -349,15 +350,28 @@ body.mainmenu-page {
 }
 
 .right-player {
-  width: 260px;
+  width: 285px;
+  min-width: 285px;
+
   background: var(--bg-secondary);
   border-left: 1px solid var(--border);
-  padding: 15px;
+
+  padding: 20px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+
   color: white;
-  margin-left: auto;
+
+  position: sticky;
+  top: 64px;
+
+  height: calc(100vh - 64px);
+
+  overflow-y: auto;
+
+  flex-shrink: 0;
 }
 
 /* Player Image */
@@ -429,13 +443,6 @@ body.mainmenu-page {
 
 .recommend-section {
   flex: 1;
-}
-
-.right-player {
-  width: 285px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 80px;
 }
 
 /* =========================
