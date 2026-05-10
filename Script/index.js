@@ -198,7 +198,7 @@ async function createTrending() {
     try {
 
         const res = await fetch(
-            `${API}/tracks/trending?limit=10&app_name=Echowave`
+            `${API}/tracks/trending?limit=5&app_name=Echowave`
         );
 
         const data = await res.json();
