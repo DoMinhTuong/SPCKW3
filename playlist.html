@@ -18,13 +18,6 @@
       </div>
 
       <div class="nav-right">
-        <div class="inputgroup">
-          <input required="" type="text" class="input" />
-          <span class="highlight"></span>
-          <span class="bar"></span>
-          <label>Tìm kiếm nhạc</label>
-        </div>
-        <button class="search-button">Search🔍</button>
         <img
           src="/Img/dpfp.jpg"
           alt="User Avatar"
@@ -137,7 +130,7 @@
 
           <button id="createPlaylistBtn">+ Create Playlist</button>
         </div>
-        <div id="playlistContainer"></div>
+        <div id="playlistContainer" class="playlist-grid"></div>
       </div>
       <div class="right-player">
         <img id="playerThumb" class="player-thumb" src="/Img/blankmusic.png" />
@@ -166,40 +159,40 @@
     <!-- FIXED SCRIPT PATHS -->
     <script src="/Script/firebase-config.js"></script>
     <script src="/Script/playlist.js"></script>
-
-    <!-- Footer (MOVED INSIDE BODY — IMPORTANT) -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-section">
-          <p style="color: aliceblue; font-size: 20px">Echowave</p>
-          <p style="font-size: 15px">
-            Khám phá, nghe và trải nghiệm những bài nhạc mới
-          </p>
-        </div>
-
-        <div class="footer-section">
-          <p style="color: aliceblue; font-size: 20px">Điều hướng</p>
-          <ul>
-            <li><a href="index.html">Trang chính</a></li>
-            <li><a href="playlist.html">Danh sách phát</a></li>
-            <li><a href="profile.html">Trang cá nhân</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <p style="color: aliceblue; font-size: 20px">Phản hồi</p>
-          <ul>
-            <li><a href="contact.html">Liên hệ</a></li>
-            <li style="font-size: 15px; color: #bbb">+84 912 345 678</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2026 Echowave. All rights reserved.</p>
-      </div>
-    </footer>
     <div id="playlistModal" class="playlist-modal hidden">
+      <!-- Footer (MOVED INSIDE BODY — IMPORTANT) -->
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-section">
+            <p style="color: aliceblue; font-size: 20px">Echowave</p>
+            <p style="font-size: 15px">
+              Khám phá, nghe và trải nghiệm những bài nhạc mới
+            </p>
+          </div>
+
+          <div class="footer-section">
+            <p style="color: aliceblue; font-size: 20px">Điều hướng</p>
+            <ul>
+              <li><a href="index.html">Trang chính</a></li>
+              <li><a href="playlist.html">Danh sách phát</a></li>
+              <li><a href="profile.html">Trang cá nhân</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <p style="color: aliceblue; font-size: 20px">Phản hồi</p>
+            <ul>
+              <li><a href="contact.html">Liên hệ</a></li>
+              <li style="font-size: 15px; color: #bbb">+84 912 345 678</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Echowave. All rights reserved.</p>
+        </div>
+      </footer>
+
       <div class="playlist-modal-content">
         <h2 class="create-playlist-title">Create Playlist</h2>
 
@@ -228,7 +221,7 @@
 
         <div id="recommendedSongs" class="recommended-songs-row"></div>
         <!-- Search Results -->
-
+        <h3 class="search-results-title">Search Results</h3>
         <div id="searchResults"></div>
 
         <!-- Selected Songs -->
