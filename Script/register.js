@@ -3,6 +3,11 @@ const db = firebase.firestore();
 
 const form = document.getElementById("registerForm");
 const message = document.getElementById("message");
+const googleBtn = document.getElementById("googleBtn");
+
+// =======================
+// EMAIL REGISTER
+// =======================
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -25,53 +30,50 @@ form.addEventListener("submit", async (e) => {
     message.style.color = "green";
     form.reset();
 
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
+
   } catch (error) {
     message.textContent = error.message;
     message.style.color = "red";
   }
-  googleBtn.addEventListener("click", () => {
-
-    const provider =
-      new firebase.auth.GoogleAuthProvider();
-
-    auth.signInWithPopup(provider)
-
-      .then(() => {
-
-        message.style.color = "green";
-
-        message.innerText =
-          "Đăng nhập qua tài khoàn Google thành công!";
-
-        setTimeout(() => {
-
-          window.location.href =
-            "index.html";
-
-        }, 1000);
-
-      })
-
-      .catch((error) => {
-
-        message.style.color = "red";
-
-        message.innerText =
-          error.message;
-
-      });
-
-  });
 });
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const auth = getAuth();
+// =======================
+// GOOGLE REGISTER
+// =======================
 
-onAuthStateChanged(auth, (user) => {
+googleBtn.addEventListener("click", () => {
 
-    if (!user) {
-        // Nếu chưa đăng nhập
-        window.location.href = "login.html";
-    }
+  const provider =
+    new firebase.auth.GoogleAuthProvider();
+
+  auth.signInWithPopup(provider)
+
+    .then(() => {
+
+      message.style.color = "green";
+
+      message.innerText =
+        "Đăng nhập qua tài khoản Google thành công!";
+
+      setTimeout(() => {
+
+        window.location.href =
+          "index.html";
+
+      }, 1000);
+
+    })
+
+    .catch((error) => {
+
+      message.style.color = "red";
+
+      message.innerText =
+        error.message;
+
+    });
 
 });

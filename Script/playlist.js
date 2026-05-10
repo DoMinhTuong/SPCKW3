@@ -86,6 +86,14 @@ async function savePlaylist(name, songs) {
 
     if (!user) return;
 
+    /* Only save serializable fields */
+    const serialized = songs.map(s => ({
+        id: s.id,
+        title: s.title,
+        artist: s.user?.name || "Unknown",
+        artwork: s.artwork?.["480x480"] || ""
+    }));
+
     await db
         .collection("playlists")
         .doc(user.uid)
@@ -93,7 +101,7 @@ async function savePlaylist(name, songs) {
         .add({
 
             name,
-            songs,
+            songs: serialized,
             createdAt: Date.now()
 
         });

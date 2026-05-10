@@ -27,6 +27,10 @@ body {
   color: var(--text-primary);
   font-family: "Titillium Web", "Helvetica Neue", "Helvetica", Arial, sans-serif;
   min-height: 100vh;
+}
+
+/* Only center content on login/register pages */
+body.auth-page {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,6 +110,7 @@ input:focus {
 .error {
   color: var(--error);
 }
+/* text-align merged into .container above */
 .container {
   text-align: center;
 }

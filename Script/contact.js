@@ -29,15 +29,7 @@ document.getElementById("contactBtn").onclick = () => {
     location.reload();
 };
 
-document.getElementById("logoutBtn").onclick = () => {
-
-    auth.signOut().then(() => {
-
-        window.location.href = "login.html";
-
-    });
-
-};
+/* logoutBtn removed — element does not exist on contact page */
 
 auth.onAuthStateChanged(user => {
 

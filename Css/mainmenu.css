@@ -64,11 +64,7 @@ body.mainmenu-page {
    MAIN LAYOUT
 ======================= */
 
-.layout {
-  display: flex;
-  flex: 1;
-  min-height: calc(100vh - 64px);
-}
+/* layout is defined below in LAYOUT FIX section */
 
 /* =======================
    SIDEBAR
@@ -310,30 +306,7 @@ body.mainmenu-page {
   gap: 12px
 }
 
-.music-card {
-  width: 180px;
-  background: #111;
-  border-radius: 16px; /* 👈 bo góc */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* 👈 viền trắng nhẹ */
-  overflow: hidden;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.music-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-}
-
-.music-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 255, 255, 0.3); /* sáng hơn khi hover */
-  scale: 1.1;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
+/* music-card styles defined below in MUSIC SECTIONS */
 /* Song Row */
 
 .song-row {
@@ -671,39 +644,7 @@ body.mainmenu-page {
   cursor: pointer;
 }
 
-/* Modal */
-
-.playlist-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.hidden {
-  display: none;
-}
-
-.playlist-modal-content {
-  width: 700px;
-  max-width: 90%;
-  background: #171b22;
-  border-radius: 24px;
-  padding: 24px;
-}
-
-.playlist-modal-content input {
-  width: 100%;
-  margin-bottom: 14px;
-  padding: 12px;
-  background: #222733;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  color: white;
-}
+/* Modal styles defined below in PLAYLIST CARD section */
 
 /* =========================
    PLAYLIST SEARCH
@@ -765,30 +706,7 @@ body.mainmenu-page {
   font-size: 16px;
 }
 
-.playlist-search-box {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.playlist-song-search-input {
-  flex: 1;
-  padding: 14px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: #222733;
-  color: white;
-}
-
-#playlistSongSearchBtn {
-  background: var(--accent);
-  border: none;
-  padding: 0 22px;
-  border-radius: 14px;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
+/* Duplicate playlist-search-box removed — defined above */
 
 /* Search Result Song */
 
