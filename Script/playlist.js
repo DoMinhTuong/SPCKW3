@@ -482,3 +482,7 @@ async function loadRecommendedSongs() {
     }
 
 }
+console.log(createPlaylistBtn);
+console.log(playlistModal);
+console.log(document.getElementById("savePlaylistBtn"));
+console.log(document.getElementById("closePlaylistModalBtn"));
