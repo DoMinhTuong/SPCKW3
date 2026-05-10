@@ -269,50 +269,42 @@ async function playSong(track) {
 /* =========================
    PLAYER CONTROLS
 ========================= */
+playerAudio.onended = async () => {
 
-playerToggle.onclick =
-    async () => {
+    currentQueueIndex++;
 
-        if (playerAudio.paused) {
+    if (
+        currentQueueIndex >=
+        currentQueue.length
+    ) {
 
-            await playerAudio.play();
+        currentQueueIndex = 0;
 
-            playerToggle.textContent =
-                "⏸";
+    }
 
-        } else {
+    await playSong(
+        currentQueue[currentQueueIndex]
+    );
 
-            playerAudio.pause();
+};
 
-            playerToggle.textContent =
-                "▶";
+playerToggle.onclick = async () => {
 
-        }
+    if (playerAudio.paused) {
 
-    };
+        await playerAudio.play();
 
-playerAudio.onended =
-    async () => {
+        playerToggle.textContent = "⏸";
 
-        currentQueueIndex++;
+    } else {
 
-        if (
-            currentQueueIndex >=
-            currentQueue.length
-        ) {
+        playerAudio.pause();
 
-            currentQueueIndex = 0;
+        playerToggle.textContent = "▶";
 
-        }
+    }
 
-        await playSong(
-            currentQueue[
-                currentQueueIndex
-            ]
-        );
-
-    };
-
+};
 playerAudio.ontimeupdate =
     () => {
 
@@ -337,15 +329,10 @@ playerAudio.ontimeupdate =
    RENDER PLAYLIST
 ========================= */
 
-function renderPlaylist(
-    id,
-    playlist
-) {
+function renderPlaylist(id, playlist) {
 
     const container =
-        document.getElementById(
-            "playlistContainer"
-        );
+        document.getElementById("playlistContainer");
 
     const card =
         document.createElement("div");
@@ -359,12 +346,8 @@ function renderPlaylist(
             .map(song => song.title)
             .join(", ");
 
-    if (
-        playlist.songs.length > 3
-    ) {
-
+    if (playlist.songs.length > 3) {
         description += " ...";
-
     }
 
     card.innerHTML = `
@@ -401,67 +384,63 @@ function renderPlaylist(
 
     `;
 
-    /* PLAY */
+    /* =========================
+       PLAY PLAYLIST
+    ========================= */
 
-    card.querySelector(
-        ".play-playlist-btn"
-    ).onclick = async () => {
+    card.querySelector(".play-playlist-btn")
+        .onclick = async () => {
 
-        if (
-            !playlist.songs.length
-        ) return;
+            if (!playlist.songs.length) return;
 
-        currentQueue =
-            playlist.songs;
+            currentQueue =
+                playlist.songs;
 
-        currentQueueIndex = 0;
+            currentQueueIndex = 0;
 
-        await playSong(
-            currentQueue[
-                currentQueueIndex
-            ]
-        );
+            await playSong(
+                currentQueue[currentQueueIndex]
+            );
 
-    };
+        };
 
-    /* OPEN */
+    /* =========================
+       OPEN PLAYLIST
+    ========================= */
 
-    card.querySelector(
-        ".open-playlist-btn"
-    ).onclick = () => {
+    card.querySelector(".open-playlist-btn")
+        .onclick = () => {
 
-        localStorage.setItem(
-            "selectedPlaylistId",
-            id
-        );
+            localStorage.setItem(
+                "selectedPlaylistId",
+                id
+            );
 
-        window.location.href =
-            "playlist-view.html";
+            window.location.href =
+                "playlist-view.html";
 
-    };
+        };
 
-    /* DELETE */
+    /* =========================
+       DELETE PLAYLIST
+    ========================= */
 
-    card.querySelector(
-        ".delete-playlist-btn"
-    ).onclick = async () => {
+    card.querySelector(".delete-playlist-btn")
+        .onclick = async () => {
 
-        const user =
-            firebase.auth()
-                .currentUser;
+            const user =
+                firebase.auth().currentUser;
 
-        await db
-            .collection("playlists")
-            .doc(user.uid)
-            .collection(
-                "userPlaylists"
-            )
-            .doc(id)
-            .delete();
+            await db
+                .collection("playlists")
+                .doc(user.uid)
+                .collection("userPlaylists")
+                .doc(id)
+                .delete();
 
-        loadPlaylists();
+            loadPlaylists();
 
-    };
+        };
 
     container.appendChild(card);
 
