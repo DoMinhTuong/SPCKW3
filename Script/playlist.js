@@ -70,7 +70,7 @@ const API = "https://discoveryprovider.audius.co/v1";
 async function searchSongs(query) {
 
     const res = await fetch(
-        `${API}/tracks/search?query=${query}&limit=10&app_name=Echowave`
+        `${API}/tracks/search?query=${encodeURIComponent(query)}&limit=10&app_name=Echowave`
     );
 
     const data = await res.json();
@@ -115,6 +115,9 @@ async function loadPlaylists() {
 
     if (!user) return;
 
+    document.getElementById("playlistContainer")
+        .innerHTML = "";
+
     const snapshot =
         await db
             .collection("playlists")
@@ -145,9 +148,9 @@ function renderPlaylist(id, playlist) {
 
     let description =
         playlist.songs
-        .slice(0, 3)
-        .map(song => song.title)
-        .join(", ");
+            .slice(0, 3)
+            .map(song => song.title)
+            .join(", ");
 
     if (playlist.songs.length > 3) {
         description += " ...";
@@ -176,20 +179,20 @@ function renderPlaylist(id, playlist) {
 }
 
 document.getElementById("playlistSongSearchBtn")
-.onclick = async () => {
+    .onclick = async () => {
 
-    const query =
-        document.getElementById("playlistSongSearch")
-        .value;
+        const query =
+            document.getElementById("playlistSongSearch")
+                .value;
 
-    if (!query) return;
+        if (!query) return;
 
-    const tracks =
-        await searchSongs(query);
+        const tracks =
+            await searchSongs(query);
 
-    renderSearchResults(tracks);
+        renderSearchResults(tracks);
 
-};
+    };
 
 function renderSearchResults(tracks) {
 
@@ -231,13 +234,20 @@ function renderSearchResults(tracks) {
         `;
 
         card.querySelector(".add-song-btn")
-        .onclick = () => {
+            .onclick = () => {
 
-            currentPlaylistSongs.push(track);
+                const exists =
+                    currentPlaylistSongs.some(
+                        song => song.id === track.id
+                    );
 
-            renderSelectedSongs();
+                if (exists) return;
 
-        };
+                currentPlaylistSongs.push(track);
+
+                renderSelectedSongs();
+
+            };
 
         container.appendChild(card);
 
@@ -252,7 +262,7 @@ function renderSelectedSongs() {
 
     container.innerHTML = "";
 
-    currentPlaylistSongs.forEach(track => {
+    currentPlaylistSongs.forEach((track, index) => {
 
         const div =
             document.createElement("div");
@@ -278,7 +288,20 @@ function renderSelectedSongs() {
 
             </div>
 
+            <button class="remove-song-btn">
+              Remove
+            </button>
+
         `;
+
+        div.querySelector(".remove-song-btn")
+            .onclick = () => {
+
+                currentPlaylistSongs.splice(index, 1);
+
+                renderSelectedSongs();
+
+            };
 
         container.appendChild(div);
 
@@ -287,89 +310,152 @@ function renderSelectedSongs() {
 }
 
 document.getElementById("savePlaylistBtn")
-.onclick = async () => {
+    .onclick = async () => {
 
-    const name =
-        document.getElementById("playlistName")
-        .value;
+        const name =
+            document.getElementById("playlistName")
+                .value;
 
-    if (!name) {
-        alert("Enter playlist name");
-        return;
+        if (!name) {
+            alert("Enter playlist name");
+            return;
+        }
+
+        await savePlaylist(
+            name,
+            currentPlaylistSongs
+        );
+
+        playlistModal.classList.add("hidden");
+
+        currentPlaylistSongs = [];
+
+        document.getElementById("playlistName").value = "";
+
+        document.getElementById("playlistSongSearch").value = "";
+
+        document.getElementById("searchResults").innerHTML = "";
+
+        document.getElementById("selectedSongs").innerHTML = "";
+
+        currentPlaylistSongs = [];
+
+        document.getElementById("playlistContainer")
+            .innerHTML = "";
+
+        loadPlaylists();
+
+    };
+
+document.getElementById("closePlaylistModalBtn")
+    .onclick = () => {
+
+        playlistModal.classList.add("hidden");
+
+    };
+
+async function loadRecommendedSongs() {
+
+    try {
+
+        const container =
+            document.getElementById("recommendedSongs");
+
+        container.innerHTML = "";
+
+        const res = await fetch(
+            `${API}/tracks/trending?limit=8&app_name=Echowave`
+        );
+
+        const data = await res.json();
+
+        const tracks = data.data || [];
+
+        tracks.forEach(track => {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "recommended-song-card";
+
+            card.innerHTML = `
+
+                <img
+                  src="${track.artwork?.["480x480"] || "/Img/blankmusic.png"}"
+                >
+
+                <div class="recommended-song-title">
+                    ${track.title}
+                </div>
+
+                <div class="recommended-song-artist">
+                    ${track.user.name}
+                </div>
+
+            `;
+
+            card.onclick = () => {
+
+                const exists =
+                    currentPlaylistSongs.some(
+                        song => song.id === track.id
+                    );
+
+                if (exists) return;
+
+                currentPlaylistSongs.push(track);
+
+                renderSelectedSongs();
+
+            };
+
+            container.appendChild(card);
+
+        });
+
+    } catch(err) {
+
+        console.error(err);
+
     }
 
-    await savePlaylist(
-        name,
-        currentPlaylistSongs
-    );
+}
 
-    playlistModal.classList.add("hidden");
+if (!currentPlaylistSongs.length) {
 
-    currentPlaylistSongs = [];
+    alert("Add at least one song");
 
-    document.getElementById("playlistContainer")
-    .innerHTML = "";
+    return;
+
+}
+
+card.querySelector(".delete-playlist-btn")
+.onclick = async () => {
+
+    const user =
+        firebase.auth().currentUser;
+
+    await db
+        .collection("playlists")
+        .doc(user.uid)
+        .collection("userPlaylists")
+        .doc(id)
+        .delete();
 
     loadPlaylists();
 
 };
 
-document.getElementById("closePlaylistModalBtn")
+card.querySelector(".open-playlist-btn")
 .onclick = () => {
 
-    playlistModal.classList.add("hidden");
-
-};
-
-async function loadRecommendedSongs() {
-
-    const container =
-        document.getElementById("recommendedSongs");
-
-    container.innerHTML = "";
-
-    const res = await fetch(
-        `${API}/tracks/trending?limit=8&app_name=Echowave`
+    localStorage.setItem(
+        "selectedPlaylistId",
+        id
     );
 
-    const data = await res.json();
+    window.location.href =
+        "playlist-view.html";
 
-    const tracks = data.data || [];
-
-    tracks.forEach(track => {
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "recommended-song-card";
-
-        card.innerHTML = `
-
-            <img
-              src="${track.artwork?.["480x480"] || "/Img/blankmusic.png"}"
-            >
-
-            <div class="recommended-song-title">
-                ${track.title}
-            </div>
-
-            <div class="recommended-song-artist">
-                ${track.user.name}
-            </div>
-
-        `;
-
-        card.onclick = () => {
-
-            currentPlaylistSongs.push(track);
-
-            renderSelectedSongs();
-
-        };
-
-        container.appendChild(card);
-
-    });
-
-}
+};
